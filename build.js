@@ -100,4 +100,28 @@ homeHtml = homeHtml.replace(
 fs.mkdirSync(DIST_DIR, { recursive: true });
 fs.writeFileSync(DIST_FILE, homeHtml, 'utf-8');
 
+// Copy image folders to dist/images/
+const DOCS_DIR = path.join(__dirname, 'docs');
+const IMAGES_DIR = path.join(DIST_DIR, 'images');
+
+const IMAGE_FOLDERS = [
+  'Hero Background - 16x9',
+  'Real Estate Icons - 512x512',
+  'Testimonial Icons - 512x512',
+];
+
+IMAGE_FOLDERS.forEach(folder => {
+  const src = path.join(DOCS_DIR, folder);
+  const dest = path.join(IMAGES_DIR, folder);
+  if (fs.existsSync(src)) {
+    fs.cpSync(src, dest, { recursive: true });
+    console.log(`  Copied: ${folder} → dist/images/${folder}`);
+  }
+});
+
+// Rewrite image paths in the built HTML
+let builtHtml = fs.readFileSync(DIST_FILE, 'utf-8');
+builtHtml = builtHtml.replace(/\.\.\/\.\.\/docs\//g, 'images/');
+fs.writeFileSync(DIST_FILE, builtHtml, 'utf-8');
+
 console.log(`✅ Built: ${DIST_FILE}`);
