@@ -1,0 +1,405 @@
+<style>
+  /* Typography: Nunito Sans applied across all text elements */
+  @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700;800&display=swap');
+
+  /* ISOLATION FIX: Changed from .dsa-wrapper to a unique ID to prevent conflicts with your other Elementor blocks */
+  #ag-chat-root,
+  #ag-chat-root * {
+    font-family: 'Nunito Sans', sans-serif !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Modern Chat Toggle using Accent Color */
+  #ag-chat-root .chat-toggle {
+    position: fixed !important;
+    bottom: 24px !important;
+    right: 24px !important;
+    width: 56px !important;
+    height: 56px !important;
+    background: #A020F0 !important; 
+    border-radius: 50% !important;
+    border: none !important;
+    cursor: pointer !important;
+    box-shadow: 0 4px 20px rgba(160, 32, 240, 0.3) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    z-index: 9998 !important;
+  }
+  
+  #ag-chat-root .chat-toggle:hover {
+    transform: scale(1.08) !important;
+    background: #8e1cd6 !important;
+  }
+  
+  #ag-chat-root .chat-toggle svg {
+    width: 24px !important;
+    height: 24px !important;
+    color: #FFFFFF !important;
+    fill: none !important;
+  }
+  
+  #ag-chat-root .notification-badge {
+    position: absolute !important;
+    top: -2px !important;
+    right: -2px !important;
+    background: #FF3B30 !important;
+    color: white !important;
+    min-width: 20px !important;
+    height: 20px !important;
+    border-radius: 10px !important;
+    font-size: 11px !important;
+    font-weight: 800 !important;
+    display: none !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 2px solid #F4F2EE !important;
+  }
+  
+  #ag-chat-root .notification-badge.show {
+    display: flex !important;
+  }
+  
+  #ag-chat-root .chat-widget {
+    position: fixed !important;
+    bottom: 96px !important;
+    right: 24px !important;
+    width: 380px !important;
+    height: 520px !important;
+    background: transparent !important;
+    border-radius: 20px !important;
+    box-shadow: 0 12px 40px rgba(49, 15, 92, 0.15) !important; 
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important; 
+    transform: scale(0.9) translateY(20px) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+    z-index: 9999 !important;
+  }
+  
+  #ag-chat-root .chat-widget.active {
+    transform: scale(1) translateY(0) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  /* Header */
+  #ag-chat-root .chat-header {
+    background: #5E256C !important; 
+    padding: 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    color: #F4F2EE !important;
+  }
+  
+  #ag-chat-root .chat-header-content {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+  }
+  
+  #ag-chat-root .chat-avatar {
+    width: 40px !important;
+    height: 40px !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-radius: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  #ag-chat-root .chat-avatar svg {
+    width: 24px !important;
+    height: 24px !important;
+    color: #F4F2EE !important;
+    fill: none !important;
+  }
+  
+  #ag-chat-root .chat-header-text h2 {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    color: #F4F2EE !important;
+  }
+  
+  #ag-chat-root .chat-header-text p {
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    color: #E9D5FF !important; 
+    opacity: 0.8 !important;
+  }
+  
+  #ag-chat-root .close-button {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: none !important;
+    color: #F4F2EE !important;
+    cursor: pointer !important;
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: background 0.2s !important;
+  }
+  
+  #ag-chat-root .close-button:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+  }
+  
+  /* Messages Area */
+  #ag-chat-root .chat-messages {
+    flex: 1 !important;
+    padding: 20px !important;
+    overflow-y: auto !important;
+    background: #F9F9FC !important; 
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+  
+  #ag-chat-root .message {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  
+  /* Bot Bubble */
+  #ag-chat-root .message.bot .message-content {
+    background: #FFFFFF !important; 
+    color: #4B5563 !important; 
+    font-size: 15px !important;
+    padding: 12px 16px !important;
+    border-radius: 4px 16px 16px 16px !important;
+    max-width: 85% !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03) !important;
+    align-self: flex-start !important;
+  }
+  
+  /* User Bubble */
+  #ag-chat-root .message.user .message-content {
+    background: #5E256C !important; 
+    color: #F4F2EE !important; 
+    font-size: 15px !important;
+    padding: 12px 16px !important;
+    border-radius: 16px 16px 4px 16px !important;
+    max-width: 85% !important;
+    align-self: flex-end !important;
+  }
+  
+  /* Input Section */
+  #ag-chat-root .chat-input-container {
+    padding: 16px !important;
+    background: #FFFFFF !important;
+    border-top: 1px solid #E5E7EB !important;
+    display: flex !important;
+    gap: 12px !important;
+    align-items: center !important;
+  }
+  
+  #ag-chat-root .input-wrapper {
+    flex: 1 !important;
+    position: relative !important;
+  }
+  
+  #ag-chat-root .chat-input {
+    width: 100% !important;
+    padding: 12px 16px !important;
+    border: 1px solid #E5E7EB !important;
+    border-radius: 12px !important;
+    font-size: 14px !important;
+    color: #4B5563 !important;
+    outline: none !important;
+    background: #F9F9FC !important;
+    transition: all 0.2s !important;
+    box-shadow: none !important;
+  }
+  
+  #ag-chat-root .chat-input:focus {
+    border-color: #A020F0 !important;
+    background: #FFFFFF !important;
+    box-shadow: 0 0 0 3px rgba(160, 32, 240, 0.1) !important;
+  }
+  
+  #ag-chat-root .send-button {
+    background: #5E256C !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 12px !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: background 0.2s !important;
+    padding: 0 !important;
+  }
+  
+  #ag-chat-root .send-button svg {
+    fill: none !important;
+  }
+  
+  #ag-chat-root .send-button:hover:not(:disabled) {
+    background: #310F5C !important;
+    transform: none !important; 
+  }
+  
+  #ag-chat-root .send-button:disabled {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+  }
+  
+  #ag-chat-root .footer-brand {
+    text-align: center !important;
+    padding: 8px !important;
+    font-size: 11px !important;
+    color: #9CA3AF !important;
+    background: #FFFFFF !important;
+    width: 100% !important;
+  }
+  
+  #ag-chat-root .footer-brand a {
+    color: #5E256C !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+  }
+  
+  #ag-chat-root .footer-brand a:hover {
+    text-decoration: underline !important;
+  }
+</style>
+
+<div id="ag-chat-root">
+  <button class="chat-toggle" id="chatToggle" aria-label="Toggle chat">
+    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+    </svg>
+    <span class="notification-badge" id="notificationBadge">1</span>
+  </button>
+
+  <div class="chat-widget" id="chatWidget">
+    <div class="chat-header">
+      <div class="chat-header-content">
+        <div class="chat-avatar">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 8V4H8"/>
+            <rect width="16" height="12" x="4" y="8" rx="2"/>
+            <path d="M2 14h2"/>
+            <path d="M20 14h2"/>
+            <path d="M15 13h.01"/>
+            <path d="M9 13h.01"/>
+          </svg>
+        </div>
+        <div class="chat-header-text">
+          <h2>Chat with Aria</h2>
+          <p>AI Support Specialist</p>
+        </div>
+      </div>
+      <button class="close-button" id="closeButton">
+        <svg width="18" height="18" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+    
+    <div class="chat-messages" id="chatMessages">
+      <div class="message bot">
+        <div class="message-content">Hello! How can AgentGenius assist you today?</div>
+      </div>
+    </div>
+    
+    <div class="chat-input-container">
+      <div class="input-wrapper">
+        <input 
+          type="text" 
+          class="chat-input" 
+          id="chatInput" 
+          placeholder="Write a message..."
+          autocomplete="off"
+        >
+      </div>
+      <button class="send-button" id="sendButton">
+        <svg width="18" height="18" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
+    </div>
+    
+    <div class="footer-brand">
+      Powered by <a href="https://n8n.io" target="_blank" rel="noopener noreferrer">n8n</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const webhookUrl = 'https://teamagentgenius.app.n8n.cloud/webhook/58460c16-d450-405c-960c-122bc9fb8825/chat ';
+  const chatWidget = document.getElementById('chatWidget');
+  const chatToggle = document.getElementById('chatToggle');
+  const closeButton = document.getElementById('closeButton');
+  const chatMessages = document.getElementById('chatMessages');
+  const chatInput = document.getElementById('chatInput');
+  const sendButton = document.getElementById('sendButton');
+  const notificationBadge = document.getElementById('notificationBadge');
+  
+  let isOpen = false;
+  let sessionId = 'session_' + Date.now();
+
+  function toggleChat() {
+    isOpen = !isOpen;
+    chatWidget.classList.toggle('active');
+    if (isOpen) {
+      chatInput.focus();
+      notificationBadge.classList.remove('show');
+    }
+  }
+
+  chatToggle.addEventListener('click', toggleChat);
+  closeButton.addEventListener('click', toggleChat);
+
+  function addMessage(content, isUser = false) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
+    messageDiv.innerHTML = `<div class="message-content">${content}</div>`;
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  async function sendMessage() {
+    const message = chatInput.value.trim();
+    if (!message) return;
+    
+    addMessage(message, true);
+    chatInput.value = '';
+    sendButton.disabled = true;
+
+    try {
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'sendMessage', sessionId: sessionId, chatInput: message })
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        addMessage(data.output || data.message || 'Thank you for your message.');
+      }
+    } catch (error) {
+      addMessage('Something went wrong. Please try again later.');
+    } finally {
+      sendButton.disabled = false;
+      chatInput.focus();
+    }
+  }
+
+  sendButton.addEventListener('click', sendMessage);
+  chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
+  setTimeout(() => { notificationBadge.classList.add('show'); }, 3000);
+</script>

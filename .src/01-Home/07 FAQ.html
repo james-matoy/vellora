@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Section</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Nunito Sans', sans-serif;
+        }
+
+        body {
+            background-color: #F9F9FC;
+            color: #333;
+        }
+
+        .faq-section {
+            width: 100%;
+            padding: 80px 20px;
+            background-color: #F9F9FC;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-section h2 {
+            font-family: 'Nunito Sans', sans-serif !important;
+            font-size: 36px;
+            color: #310F5C;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .faq-section .subtitle {
+            color: #4B5563;
+            font-size: 18px;
+            font-weight: 400;
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto 50px auto;
+            line-height: 1.5;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
+        }
+
+        .faq-item:hover {
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 15px 50px -10px rgba(160, 32, 240, 0.12);
+        }
+
+        .faq-item.is-expanded {
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 15px 50px -10px rgba(160, 32, 240, 0.15);
+        }
+
+        .faq-question {
+            padding: 22px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            color: #310F5C;
+            font-weight: 700;
+            font-size: 17px;
+            line-height: 1.4;
+            transition: color 0.3s ease;
+        }
+
+        .faq-item.is-expanded .faq-question {
+            color: #A020F0;
+        }
+
+        .faq-icon {
+            width: 28px;
+            height: 28px;
+            flex-shrink: 0;
+            color: #A020F0;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .faq-item.is-expanded .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            padding: 0 28px;
+            transition: max-height 0.4s ease, opacity 0.4s ease, padding-bottom 0.4s ease;
+        }
+
+        .faq-item.is-expanded .faq-answer {
+            max-height: 300px;
+            opacity: 1;
+            padding-bottom: 24px;
+        }
+
+        .faq-answer p {
+            color: #4B5563;
+            font-size: 15px;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        @media (max-width: 768px) {
+            .faq-section {
+                padding: 50px 16px;
+            }
+            .faq-section h2 {
+                font-size: 28px;
+            }
+            .faq-question {
+                padding: 18px 20px;
+                font-size: 15px;
+            }
+            .faq-answer {
+                padding: 0 20px;
+            }
+            .faq-item.is-expanded .faq-answer {
+                padding-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="faq-section">
+        <div class="faq-container">
+            <h2>Frequently Asked Questions</h2>
+            <p class="subtitle">Everything you need to know about working with us.</p>
+
+            <div class="faq-list">
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What makes your approach different?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We blend deep local market expertise with a concierge-level service that prioritizes your comfort and peace of mind over a quick sale.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Is my financial information safe?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely. We use industry-standard security protocols to handle your pre-approvals and sensitive documents with absolute discretion.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you work with first-time buyers?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes. We love helping new buyers navigate the market. We break down the complexities so you can focus on finding the right home.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I get started?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Book a private consultation using the link above. We'll discuss your goals over coffee or a video call and chart your next steps.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        (function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const isExpanded = item.classList.contains('is-expanded');
+                    faqItems.forEach(i => i.classList.remove('is-expanded'));
+                    if (!isExpanded) {
+                        item.classList.add('is-expanded');
+                    }
+                });
+            });
+        })();
+    </script>
+
+</body>
+</html>

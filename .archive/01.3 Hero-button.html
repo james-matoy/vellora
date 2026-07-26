@@ -1,0 +1,99 @@
+<div id="strategy-call-scoped-container">
+    <style>
+        /* Import Nunito Sans */
+        @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,200..1000&display=swap');
+
+        /* Scoped strictly to the unique ID to prevent any CSS leakage or conflicts */
+        #strategy-call-scoped-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            font-family: 'Nunito Sans', sans-serif !important;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+
+        #strategy-call-scoped-container .glass-btn-unique {
+            display: inline-flex;
+            align-items: center;
+            gap: 20px;
+            padding: 10px 10px 10px 32px;
+            text-decoration: none;
+
+            /* Glass Style - Updated to blend with #6B2A8B */
+            background: rgba(107, 42, 139, 0.4);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 100px;
+            /* Subtle border adds "recognizability" without breaking the blend */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            cursor: pointer;
+
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
+        #strategy-call-scoped-container .btn-text-unique {
+            color: #ffffff;
+            font-family: 'Nunito Sans', sans-serif !important;
+            font-size: 18px;
+            font-weight: normal;
+            text-decoration: none;
+            line-height: 1.2;
+            white-space: nowrap;
+        }
+
+        #strategy-call-scoped-container .btn-icon-circle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            /* High contrast white for visibility */
+            border: 1.5px solid #ffffff;
+            background-color: transparent;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        #strategy-call-scoped-container .btn-icon-circle svg {
+            width: 22px;
+            height: 22px;
+            stroke: #ffffff;
+            transition: stroke 0.3s ease;
+        }
+
+        /* --- Hover State (Color only, no movement) --- */
+
+        #strategy-call-scoped-container .glass-btn-unique:hover {
+            /* Deepens the blend on hover */
+            background: rgba(107, 42, 139, 0.7);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        #strategy-call-scoped-container .glass-btn-unique:hover .btn-icon-circle {
+            background-color: #ffffff;
+        }
+
+        #strategy-call-scoped-container .glass-btn-unique:hover .btn-icon-circle svg {
+            stroke: #6B2A8B;
+            /* Icon flips to the brand color on white background */
+        }
+    </style>
+
+    <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1FpsT1ABes0yas-CoPQBy9RZ4C81HKLOq1iX5UGWtlb-U90di83Ekx2PLYQlR7fdRJsYM8dvq8"
+        class="glass-btn-unique" target="_blank" rel="noopener noreferrer">
+        <span class="btn-text-unique">Book Strategy Call</span>
+        <div class="btn-icon-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+        </div>
+    </a>
+</div>

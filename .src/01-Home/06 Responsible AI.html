@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Trust & Governance Hub</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&display=swap');
+
+        .ai-trust-governance-hub {
+            font-family: 'Nunito Sans', sans-serif !important;
+            --hub-primary-dark: #310F5C;
+            --hub-accent-purple: #A020F0;
+            --hub-accent-teal: #00C4B4;
+            --hub-status-green: #10b981;
+            color: #4B5563;
+            line-height: 1.5;
+        }
+
+        /* SECTION 1: ETHICAL INNOVATION */
+        .ethical-innovation-block { padding: 80px 0; background: #fff; }
+        .governance-layout-grid { display: flex; gap: 60px; max-width: 1200px; margin: 0 auto; padding: 0 20px; min-height: 500px; align-items: center; }
+
+        .narrative-content-box { flex: 1.3; }
+        .narrative-heading { 
+            font-family: 'Nunito Sans', sans-serif !important;
+            color: var(--hub-primary-dark); 
+            font-size: 52px; 
+            font-weight: 800; 
+            line-height: 1.05; 
+            margin-bottom: 20px; 
+            white-space: nowrap; 
+        }
+        .narrative-heading:hover {
+            background: linear-gradient(to right, #310F5C, #5B2C98, #A020F0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .narrative-lead, .infra-summary { color: #4B5563; font-size: 18px; line-height: 1.6; font-weight: 400; }
+
+        /* SHARED INTERACTIVE ELEMENTS */
+        .governance-pillar-card, .live-protection-card, .compliance-unit { 
+            position: relative;
+            transition: all 0.4s ease; 
+            cursor: pointer; 
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        /* MOUSE GLOW EFFECTS */
+        .governance-pillar-card::before, .live-protection-card::before, .compliance-unit::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background: radial-gradient(600px circle at var(--mouse-x, -100%) var(--mouse-y, -100%), rgba(160, 32, 240, 0.12), transparent 50%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .governance-pillar-card::after, .live-protection-card::after, .compliance-unit::after {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            padding: 1.8px;
+            z-index: 2;
+            background: radial-gradient(250px circle at var(--mouse-x, -100%) var(--mouse-y, -100%), var(--hub-accent-purple) 0%, rgba(160, 32, 240, 0.8) 15%, rgba(160, 32, 240, 0.2) 40%, transparent 60%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            -webkit-mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .governance-pillar-card::after { border-radius: 28px; }
+        .live-protection-card::after { border-radius: 12px; }
+        .compliance-unit::after { border-radius: 4px; }
+
+        /* HOVER BEHAVIORS */
+        .governance-pillar-card:hover, .governance-pillar-card.active { 
+            background: rgba(255, 255, 255, 0.8);
+            transform: translateY(-5px); 
+            box-shadow: 0 15px 35px rgba(160, 32, 240, 0.1); 
+        }
+
+        .live-protection-card:hover, .compliance-unit:hover { 
+            background: rgba(255, 255, 255, 0.95);
+            transform: none; 
+        }
+
+        .governance-pillar-card:hover::before, .governance-pillar-card:hover::after,
+        .governance-pillar-card.active::before, .governance-pillar-card.active::after,
+        .live-protection-card:hover::before, .live-protection-card:hover::after,
+        .compliance-unit:hover::before, .compliance-unit:hover::after {
+            opacity: 1;
+        }
+
+        .compliance-unit:hover::after {
+            background: linear-gradient(to right, var(--hub-accent-purple), var(--hub-accent-teal));
+        }
+
+        .governance-pillar-card { 
+            display: flex; gap: 20px; padding: 35px 24px; margin-bottom: 20px; border-radius: 28px; 
+            background: rgba(255, 255, 255, 0.6); 
+            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+        }
+
+        .pillar-icon-box.icon-reversed { 
+            background: #FFFFFF; 
+            border: 1px solid var(--hub-accent-purple);
+            color: var(--hub-accent-purple);
+        }
+
+        .governance-pillar-card:hover .pillar-icon-box, 
+        .governance-pillar-card.active .pillar-icon-box { 
+            background: var(--hub-accent-purple) !important; 
+            color: #fff !important;
+            border-color: var(--hub-accent-purple);
+        }
+
+        .pillar-icon-box { 
+            min-width: 52px; height: 52px; flex-shrink: 0; border-radius: 10px; 
+            display: flex; align-items: center; justify-content: center; position: relative; z-index: 3;
+            transition: all 0.4s ease;
+        }
+
+        .pillar-text-content { position: relative; z-index: 3; }
+        .pillar-title { font-family: 'Nunito Sans', sans-serif !important; color: var(--hub-primary-dark); margin: 0 0 8px 0; font-size: 24px; font-weight: 700; }
+        .pillar-desc { color: #4B5563; font-size: 16px; line-height: 1.5; margin: 0; font-weight: 400; }
+
+        /* SECTION 2: SECURITY INFRASTRUCTURE */
+        .security-infrastructure-block { background: #ffffff; padding: 100px 0; position: relative; overflow: hidden; }
+        .infra-grid-pattern { position: absolute; inset: 0; opacity: 1; background-image: linear-gradient(#F9F9FC 1.5px, transparent 1.5px), linear-gradient(90deg, #F9F9FC 1.5px, transparent 1.5px); background-size: 30px 30px; }
+        .infra-inner-container { max-width: 1200px; margin: 0 auto; position: relative; z-index: 5; padding: 50px 20px; }
+        .infra-flex-arrangement { display: flex; gap: 60px; align-items: center; }
+        .infra-specification-copy { flex: 1.4; position: relative; z-index: 1; text-align: center; }
+
+        /* TASK: Changed border-radius to 4px to match certificates */
+        .protocol-box-tag { 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 8px; 
+            margin-bottom: 20px; 
+            border: 1.5px solid #310F5C; 
+            padding: 6px 20px; 
+            border-radius: 4px; 
+            background: #FFFFFF;
+            transition: all 0.4s ease;
+        }
+
+        .protocol-box-tag:hover {
+            border-color: var(--hub-status-green);
+        }
+
+        .protocol-label { 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            color: #310F5C !important; 
+            letter-spacing: 1.2px; 
+            font-size: 14px;
+            transition: all 0.4s ease; 
+        }
+
+        .protocol-box-tag:hover .protocol-label {
+            color: var(--hub-status-green) !important;
+        }
+
+        .protocol-box-tag:hover svg,
+        .protocol-box-tag:hover svg path {
+            stroke: var(--hub-status-green) !important;
+            transition: all 0.4s ease;
+        }
+
+        .infra-main-title { font-family: 'Nunito Sans', sans-serif !important; font-size: 52px; font-weight: 800; line-height: 1.05; margin-bottom: 20px; color: var(--hub-primary-dark); white-space: nowrap; }
+        .infra-main-title:hover {
+            background: linear-gradient(to right, #A020F0, #00C4B4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .infra-summary { max-width: 550px; margin: 0 auto 35px auto; }
+
+        /* TASK: Aligned certificates center */
+        .compliance-badges-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 35px; justify-content: center; }
+        .compliance-unit { 
+            background: #FFFFFF; border: 1px solid #eee; padding: 10px 16px; border-radius: 4px; font-size: 14px; font-weight: 800; display: flex; align-items: center; gap: 10px; color: var(--hub-primary-dark); text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .live-protection-card { 
+            flex: 1; background: #fff; border: 1px solid #eee; padding: 35px; border-radius: 12px; 
+            box-shadow: 0 15px 45px rgba(0,0,0,0.04);
+        }
+
+        .protection-accent-line { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 4px; 
+            background: #A020F0; 
+            border-radius: 12px 12px 0 0; 
+            z-index: 4; 
+            transition: background 0.4s ease;
+        }
+
+        .live-protection-card:hover .protection-accent-line {
+            background: linear-gradient(to right, var(--hub-accent-purple), var(--hub-accent-teal));
+        }
+
+        .protection-telemetry-list { position: relative; z-index: 3; }
+        .telemetry-item { display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid #f5f5f5; color: #4B5563; font-size: 12px; font-weight: 700; }
+
+        .status-val-dark { color: #310F5C !important; font-weight: 800; }
+        .status-val-purple { color: var(--hub-accent-purple); font-weight: 800; }
+
+        .live-protection-card:hover .status-val-dark { color: #10b981 !important; }
+        .live-protection-card:hover .protection-tier-label { color: #10b981 !important; }
+        .live-protection-card:hover .shield-indicator { 
+            background: rgba(16, 185, 129, 0.12) !important; 
+            transition: background 0.4s ease; 
+        }
+        .live-protection-card:hover .shield-indicator svg, 
+        .live-protection-card:hover .shield-indicator svg path { 
+            stroke: #10b981 !important; 
+        }
+
+        .protection-footer { margin-top: 25px; display: flex; gap: 15px; align-items: center; position: relative; z-index: 3; }
+        .shield-indicator { width: 44px; height: 44px; flex-shrink: 0; background: rgba(49, 15, 92, 0.08); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .protection-tier-label { display: block; font-size: 14px; color: var(--hub-primary-dark); text-transform: uppercase; transition: color 0.4s ease; font-weight: 800; }
+        .protection-tier-desc { font-size: 12px; color: #4B5563; margin: 3px 0 0; font-weight: 400; }
+
+        /* --- MOBILE PERFORMANCE OPTIMIZATION --- */
+        @media (max-width: 900px) {
+          .governance-layout-grid, .infra-flex-arrangement { flex-direction: column; gap: 40px; }
+          .infra-main-title, .narrative-heading { font-size: 36px !important; text-align: center; white-space: normal; }
+          .narrative-lead, .infra-summary { text-align: center; }
+          
+          .governance-pillar-card {
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            background: rgba(255, 255, 255, 0.95); 
+          }
+
+          .governance-pillar-card, .live-protection-card, .compliance-unit {
+               transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease !important;
+               transform: translateZ(0); 
+               will-change: transform;   
+          }
+
+          .protocol-box-tag { 
+            justify-content: center; 
+            flex-wrap: nowrap; 
+            margin-left: auto; 
+            margin-right: auto; 
+            display: flex; 
+            max-width: fit-content;
+            border: 1px solid var(--hub-status-green) !important; 
+            padding: 4px 16px !important;       
+            gap: 4px !important;               
+          }
+
+          .protocol-label { 
+            white-space: nowrap; 
+            color: var(--hub-status-green) !important; 
+          }
+
+          .protocol-box-tag svg, 
+          .protocol-box-tag svg path {
+            stroke: var(--hub-status-green) !important; 
+          }
+          
+          .governance-layout-grid, .infra-inner-container { padding-left: 20px; padding-right: 20px; }
+          .telemetry-item span:last-child { text-align: right; }
+          
+          .compliance-badges-row { justify-content: center; }
+          .governance-pillar-card { flex-direction: column !important; align-items: center !important; text-align: center !important; }
+          .protection-footer { flex-direction: column !important; align-items: center !important; text-align: center !important; }
+        }
+
+        /* --- TEXT CONTENT WRAPPER --- */
+        .section-header {
+            max-width: 1200px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+            text-align: center;
+            background-color: #FFFFFF;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            font-family: 'Nunito Sans', sans-serif !important;
+            color: #310F5C;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .section-header p {
+            color: #4B5563;
+            font-size: 18px;
+            font-weight: 400;
+            max-width: 500px;
+            margin: 0 auto 50px auto;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .section-header h2 {
+                font-size: 28px;
+            }
+            .section-header p {
+                font-size: 16px;
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="ai-trust-governance-hub">
+
+  <section class="ethical-innovation-block">
+    <div class="governance-layout-grid">
+      <div class="narrative-content-box">
+        <h2 class="narrative-heading">Our Commitment<br>to You</h2>
+        <p class="narrative-lead">
+          True luxury requires trust. We prioritize ethical representation that empowers your decisions rather than rushing them.
+        </p>
+      </div>
+
+      <div class="pillars-stack-column" id="pillarsScrollContainer">
+        <div class="governance-pillar-card">
+          <div class="pillar-icon-box icon-reversed">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="pillar-text-content">
+            <h3 class="pillar-title">Client at the Core</h3>
+            <p class="pillar-desc">True luxury requires trust. We prioritize ethical representation that empowers your decisions rather than rushing them.</p>
+          </div>
+        </div>
+
+        <div class="governance-pillar-card active">
+          <div class="pillar-icon-box icon-reversed">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <div class="pillar-text-content">
+            <h3 class="pillar-title">Total Transparency</h3>
+            <p class="pillar-desc">No hidden fees, no surprises. You maintain full visibility into every negotiation, inspection, and contract detail.</p>
+          </div>
+        </div>
+
+        <div class="governance-pillar-card">
+          <div class="pillar-icon-box icon-reversed">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div class="pillar-text-content">
+            <h3 class="pillar-title">Absolute Discretion</h3>
+            <p class="pillar-desc">Your privacy is our highest priority. We ensure your financial data, identity, and personal matters are handled with strict confidentiality.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="security-infrastructure-block">
+    <div class="infra-grid-pattern"></div>
+    <div class="infra-inner-container">
+        
+      <div class="infra-flex-arrangement">
+        <div class="infra-specification-copy">
+            <div class="protocol-box-tag">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#310F5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke: #310F5C !important;"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
+              <span class="protocol-label">Trust & Assurance Protocol</span>
+            </div>
+            <h2 class="infra-main-title">Your Trust.<br>Our Foundation.</h2>
+            <p class="infra-summary">
+              Every transaction is protected by rigorous standards, escrow safeguards, and licensed professionals committed to your peace of mind.
+            </p>
+            
+            <div class="compliance-badges-row">
+              <div class="compliance-unit">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  LICENSED BROKERAGE
+              </div>
+              <div class="compliance-unit">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                  ESCROW PROTECTED
+              </div>
+              <div class="compliance-unit">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15l2 2 4-4"/></svg>
+                  BOARD CERTIFIED
+              </div>
+            </div>
+        </div>
+
+        <div class="live-protection-card">
+          <div class="protection-accent-line"></div>
+          <div class="protection-telemetry-list">
+            <div class="telemetry-item"><span>Client Data</span><span class="status-val-dark">Bank-Level Security</span></div>
+            <div class="telemetry-item"><span>Transaction Status</span><span class="status-val-dark">Private Portal</span></div>
+            <div class="telemetry-item"><span>Communications</span><span class="status-val-purple">Discreet & Confidential</span></div>
+            <div class="telemetry-item"><span>Document Handling</span><span class="status-val-dark">Certified Escrow</span></div>
+          </div>
+          <div class="protection-footer">
+            <div class="shield-indicator">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#310F5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke: #310F5C !important;"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
+            </div>
+            <div class="protection-footer-copy">
+              <strong class="protection-tier-label">Your Peace of Mind</strong>
+              <p class="protection-tier-desc">Every detail is protected by licensed expertise and strict confidentiality standards.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function() {
+  const hoverableElements = document.querySelectorAll('.governance-pillar-card, .live-protection-card, .compliance-unit');
+  const pillars = document.querySelectorAll('.governance-pillar-card');
+    
+  window.addEventListener('mousemove', (e) => {
+    hoverableElements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        el.style.setProperty("--mouse-x", `${x}px`);
+        el.style.setProperty("--mouse-y", `${y}px`);
+    });
+  });
+
+  pillars.forEach(pillar => {
+    pillar.addEventListener('mouseenter', () => {
+      pillars.forEach(p => p.classList.remove('active'));
+      pillar.classList.add('active');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

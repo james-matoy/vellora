@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custom AI Agent Process</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&display=swap');
+
+    /* REINFORCED FONT STYLES */
+    .dsa-wrapper,
+    .dsa-wrapper h3,
+    .dsa-wrapper p,
+    .dsa-wrapper div,
+    .dsa-wrapper span,
+    .step-title, 
+    .step-description,
+    .step-number,
+    .section-header {
+        font-family: 'Nunito Sans', sans-serif !important;
+    }
+
+    /* Section Header Styles (from What People Say) */
+    .section-header {
+        text-align: center;
+        max-width: 1100px;
+        margin: 0 auto 50px auto;
+        padding: 0 20px;
+    }
+
+    .section-header h2 {
+        font-size: 36px;
+        font-family: 'Nunito Sans', sans-serif !important;
+        color: #310F5C;
+        font-weight: 700;
+        margin-bottom: 15px;
+        letter-spacing: -1px;
+    }
+
+    .section-header p {
+        color: #4B5563;
+        font-size: 18px;
+        font-weight: 400;
+        max-width: 500px;
+        margin: 0 auto 50px auto;
+        line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+        .section-header h2 {
+            font-size: 28px;
+        }
+        .section-header p {
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+    }
+
+    body {
+        background-color: #FFFFFF;
+        text-align: center;
+        color: #000;
+        margin: 0;
+    }
+
+    .steps-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        max-width: 1100px;
+        margin: 0 auto;
+        position: relative;
+        margin-top: 50px; 
+    }
+
+    .step-wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+        cursor: pointer;
+    }
+
+    .step-wrapper.offset {
+        margin-top: 100px;
+    }
+
+    /* --- DESKTOP STYLES (COPIED FROM HTML1) --- */
+    .step-number {
+        font-size: 20px;
+        font-weight: 800;
+        margin-bottom: 8px;
+        color: #A020F0; 
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .step-circle {
+        width: 70px;
+        height: 70px;
+        background-color: #ffffff;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 25px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        border: 1px solid #A020F0; 
+        box-sizing: border-box;
+        transition: transform 0.3s ease, border 0.3s ease; 
+    }
+
+    .step-circle svg {
+        width: 32px;
+        height: 32px;
+        fill: #A020F0; 
+        transition: fill 0.3s ease;
+    }
+
+    .step-title {
+        font-size: 18px;
+        font-weight: 700;
+        margin: 0 0 10px 0;
+        color: #A020F0; 
+        transition: color 0.3s ease;
+    }
+
+    .step-description {
+        font-size: 14px;
+        color: #A020F0; 
+        line-height: 1.5;
+        transition: color 0.3s ease;
+    }
+
+    /* HOVER & ACTIVE STATES */
+    .step-wrapper:hover .step-circle,
+    .step-wrapper.is-active .step-circle {
+        transform: scale(1.15);
+        border: none; 
+        box-shadow: 0 4px 8px #A020F0; 
+    }
+
+    .step-wrapper:hover .step-title,
+    .step-wrapper.is-active .step-title {
+        color: #310F5C; 
+    }
+
+    .step-wrapper:hover .step-description,
+    .step-wrapper.is-active .step-description {
+        color: #4B5563; 
+    }
+
+    /* CONNECTORS */
+    .arrow-connector {
+        flex: 0.6;
+        height: 120px; 
+        position: relative;
+        top: 25px; 
+        z-index: 1;
+    }
+
+    .arrow-svg {
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+    }
+
+    .arrow-path {
+        fill: none;
+        stroke: #E9D5FF; 
+        stroke-width: 3;
+        stroke-linecap: round;
+        transition: stroke 0.3s ease;
+    }
+
+    .arrow-path.is-active {
+        stroke: #A020F0;
+        marker-end: url(#arrowhead-active) !important;
+    }
+
+    /* --- MOBILE STYLES: Preserved from HTML2 --- */
+    @media (max-width: 768px) {
+        .steps-container {
+            flex-direction: column;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .step-wrapper.offset {
+            margin-top: 0;
+        }
+
+        .arrow-connector {
+            display: none;
+        }
+
+        .step-wrapper {
+            flex-direction: row !important;
+            align-items: flex-start !important;
+            text-align: left !important;
+            gap: 20px;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .step-number {
+            position: static !important;
+            margin-bottom: 5px !important;
+            display: block;
+        }
+
+        .step-circle {
+            margin-top: 25px; 
+            margin-bottom: 0 !important;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .step-description {
+            display: block !important;
+            margin-top: 5px;
+        }
+    }
+
+    svg { display: block; }
+</style>
+
+</head>
+<body>
+
+    <div class="dsa-wrapper">
+        <div class="section-header">
+            <h2>Your acquisition journey</h2>
+            <p>Our client representation roadmap combines market intelligence and personalized negotiation strategies to deliver a seamless property search, secure closing, and tailored real estate investment experience.</p>
+        </div>
+        <div class="steps-container">
+            <!-- Shared SVG markers for arrows -->
+            <svg style="position:absolute;width:0;height:0;" aria-hidden="true">
+                <defs>
+                    <marker id="arrowhead-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                        <polygon points="0 0, 8 3, 0 6" fill="#E9D5FF" />
+                    </marker>
+                    <marker id="arrowhead-active" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                        <polygon points="0 0, 8 3, 0 6" fill="#A020F0" />
+                    </marker>
+                </defs>
+            </svg>
+            
+            <div class="step-wrapper">
+                <div class="step-number">01</div>
+                <div class="step-circle">
+                    <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </div>
+                <div class="step-content">
+                    <h3 class="step-title">Discovery & Strategy</h3>
+                    <p class="step-description">We identify your exact lifestyle requirements, preferred aesthetics, and long-term financial goals.</p>
+                </div>
+            </div>
+
+            <div class="arrow-connector">
+                <svg class="arrow-svg" viewBox="20 10 50 130" preserveAspectRatio="none">
+                    <path class="arrow-path" d="M -7,-3 Q 50,-10 95,85" marker-end="url(#arrowhead-red)" />
+                </svg>
+            </div>
+
+            <div class="step-wrapper offset">
+                <div class="step-number">02</div>
+                <div class="step-circle">
+                    <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                </div>
+                <div class="step-content">
+                    <h3 class="step-title">Curated Property Tour</h3>
+                    <p class="step-description">We present a hand-selected portfolio of homes tailored specifically to your unique criteria.</p>
+                </div>
+            </div>
+
+            <div class="arrow-connector" style="top: -20px;">
+                <svg class="arrow-svg" viewBox="25 -85 55 200" preserveAspectRatio="none">
+                    <path class="arrow-path" d="M 5,130 Q 50,0 95,-20" marker-end="url(#arrowhead-red)" />
+                </svg>
+            </div>
+
+            <div class="step-wrapper">
+                <div class="step-number">03</div>
+                <div class="step-circle">
+                    <svg viewBox="0 0 24 24"><path d="M15 9H9v6h6V9zm-2 4h-2v-2h2v2zm8-2V9h-2V7c0-1.1-.9-2-2-2h-2V3h-2v2h-2V3H9v2H7c-1.1 0-2 .9-2 2v2H3v2h2v2H3v2h2v2c0 1.1.9 2 2 2h2v2h2v-2h2v2h2v-2h2c1.1 0 2-.9 2-2v-2h2v-2h-2v-2h2zm-4 6H7V7h10v10z"/></svg>
+                </div>
+                <div class="step-content">
+                    <h3 class="step-title">Negotiation & Acquisition</h3>
+                    <p class="step-description">We execute strategic offers backed by real-time market analytics to secure your perfect property.</p>
+                </div>
+            </div>
+
+            <div class="arrow-connector">
+                <svg class="arrow-svg" viewBox="20 10 50 130" preserveAspectRatio="none">
+                    <path class="arrow-path" d="M -7,-3 Q 50,-10 95,85" marker-end="url(#arrowhead-red)" />
+                </svg>
+            </div>
+
+            <div class="step-wrapper offset">
+                <div class="step-number">04</div>
+                <div class="step-circle">
+                    <svg viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+                </div>
+                <div class="step-content">
+                    <h3 class="step-title">Closing & Beyond</h3>
+                    <p class="step-description">Our concierge service provides foundational support, network connections, and guidance long after you receive the keys.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const steps = document.querySelectorAll('.step-wrapper');
+        const arrows = document.querySelectorAll('.arrow-path');
+
+        steps.forEach((step, index) => {
+            const activatePreceding = () => {
+                steps.forEach(s => s.classList.remove('is-active'));
+                arrows.forEach(a => a.classList.remove('is-active'));
+                
+                for (let i = 0; i <= index; i++) {
+                    steps[i].classList.add('is-active');
+                }
+                for (let j = 0; j < index; j++) {
+                    if(arrows[j]) arrows[j].classList.add('is-active');
+                }
+            };
+
+            const deactivateAll = () => {
+                steps.forEach(s => s.classList.remove('is-active'));
+                arrows.forEach(a => a.classList.remove('is-active'));
+            };
+
+            step.addEventListener('mouseenter', activatePreceding);
+            step.addEventListener('mouseleave', deactivateAll);
+            step.addEventListener('click', activatePreceding);
+        });
+    </script>
+
+</body>
+</html>

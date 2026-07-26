@@ -1,0 +1,209 @@
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+    /* 1. ELEMENTOR OVERRIDE & RESET */
+    .genius-impact-wrapper,
+    .genius-impact-wrapper * {
+        box-sizing: border-box !important;
+    }
+
+    .genius-impact-wrapper {
+        display: flex;
+        justify-content: center;
+        padding: 40px 20px !important;
+        background-color: transparent !important;
+    }
+
+    /* 2. CARD COMPONENT */
+    .genius-card-container {
+        position: relative;
+        width: 100%;
+        max-width: 920px;
+        padding: 5px 5px !important;
+        border-radius: 28px !important;
+        background: #ffffff !important;
+        border: none !important;
+        box-shadow: none !important;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        cursor: pointer;
+        z-index: 1;
+        transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    /* Hover State: Drop shadow #310F5C */
+    .genius-card-container:hover {
+        box-shadow: 0 10px 30px rgba(49, 15, 92, 0.2) !important;
+    }
+
+    /* Radial Spotlight Tracking Effect */
+    .genius-card-container::before {
+        content: "" !important;
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background: radial-gradient(600px circle at var(--mouse-x, -100%) var(--mouse-y, -100%),
+                rgba(49, 15, 92, 0.08),
+                transparent 50%) !important;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+    }
+
+    /* Edge Glow Mask */
+    .genius-card-container::after {
+        content: "" !important;
+        position: absolute;
+        inset: -1px;
+        border-radius: 28px;
+        padding: 1.8px;
+        z-index: 2;
+        background: radial-gradient(300px circle at var(--mouse-x, -100%) var(--mouse-y, -100%),
+                #310F5C 0%,
+                rgba(49, 15, 92, 0.6) 15%,
+                rgba(49, 15, 92, 0.1) 40%,
+                transparent 60%) !important;
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+    }
+
+    .genius-card-container:hover::before,
+    .genius-card-container:hover::after {
+        opacity: 1 !important;
+    }
+
+    /* 3. TABLE STYLES */
+    .genius-data-table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+        border: none !important;
+        background-color: transparent !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        position: relative;
+        z-index: 3;
+        font-family: 'Nunito Sans', sans-serif !important;
+    }
+
+    .genius-data-table thead th,
+    .genius-data-table tbody td {
+        background-color: transparent !important;
+        border: none !important;
+        text-align: center !important;
+        vertical-align: top !important;
+        box-shadow: none !important;
+        padding: 10px 10px !important;
+        font-size: 14px !important;
+        /* Desktop Font */
+    }
+
+    .genius-data-table thead th {
+        font-weight: 800 !important;
+    }
+
+    .genius-data-table tbody td {
+        font-weight: 600 !important;
+        white-space: nowrap !important;
+    }
+
+    /* Desktop Text Color Logic: #310F5C normal, semantic hover */
+    .col-status-before,
+    .col-status-after,
+    .col-status-impact {
+        color: #310F5C !important;
+        transition: color 0.3s ease !important;
+    }
+
+    .genius-card-container:hover .col-status-before {
+        color: #c0392b !important;
+    }
+
+    .genius-card-container:hover .col-status-after {
+        color: #5d2e8e !important;
+    }
+
+    .genius-card-container:hover .col-status-impact {
+        color: #27ae60 !important;
+    }
+
+    /* 4. MOBILE RESPONSIVENESS: FONT REDUCED BY 1px */
+    @media (max-width: 768px) {
+        .genius-card-container {
+            padding: 20px 5px !important;
+        }
+
+        .genius-data-table {
+            table-layout: fixed !important;
+        }
+
+        /* Reduced from ~12.8px (0.8rem) to 11.8px */
+        .genius-data-table thead th {
+            font-size: 11.8px !important;
+            white-space: normal !important;
+            padding: 8px 2px !important;
+        }
+
+        /* Reduced from 12px (0.75rem) to 11px */
+        .genius-data-table tbody td {
+            font-size: 11px !important;
+            white-space: normal !important;
+            word-wrap: break-word !important;
+            padding: 8px 2px !important;
+            line-height: 1.2;
+        }
+    }
+</style>
+
+<div class="genius-impact-wrapper">
+    <div class="genius-card-container">
+        <table class="genius-data-table">
+            <thead>
+                <tr>
+                    <th class="col-status-before">Before AgentGenius</th>
+                    <th class="col-status-after">After AgentGenius</th>
+                    <th class="col-status-impact">Impact</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-status-before">Manual data entry</td>
+                    <td class="col-status-after">Automated intelligence</td>
+                    <td class="col-status-impact">90% time saved</td>
+                </tr>
+                <tr>
+                    <td class="col-status-before">Missed opportunities</td>
+                    <td class="col-status-after">24/7 follow-ups</td>
+                    <td class="col-status-impact">100% capture rate</td>
+                </tr>
+                <tr>
+                    <td class="col-status-before">Guessing trends</td>
+                    <td class="col-status-after">Predictive insights</td>
+                    <td class="col-status-impact">Proactive decisions</td>
+                </tr>
+                <tr>
+                    <td class="col-status-before">Team burnout</td>
+                    <td class="col-status-after">Strategic focus</td>
+                    <td class="col-status-impact">Unlimited capacity</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('mousemove', (e) => {
+        const card = document.querySelector('.genius-card-container');
+        if (card) {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty("--mouse-x", `${x}px`);
+            card.style.setProperty("--mouse-y", `${y}px`);
+        }
+    });
+</script>

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgentGenius.ai - Core Capabilities</title>
+
+    <style>
+        /* --- Import Font for Override --- */
+        @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+        /* --- Contextual Font Class --- */
+        .ag-capabilities-context-font {
+            font-family: 'Nunito Sans', sans-serif;
+        }
+
+        /* --- Unique Scoped Variables --- */
+        .ag-cap-wrapper {
+            --ag-cap-bg-main: #F9F9FC;
+            --ag-cap-purple: #A020F0;
+            --ag-cap-hover-bg: #E9D5FF;
+            --ag-cap-text-main: #000000;
+            --ag-cap-text-muted: #6b7280;
+            --ag-cap-border: #e5e7eb;
+            --ag-cap-white: #ffffff;
+            --ag-cap-num-default: #A020F0;
+            --ag-cap-neon-purple: #A020F0;
+
+            background-color: var(--ag-cap-bg-main);
+            color: var(--ag-cap-text-main);
+            line-height: 1.5;
+            width: 100%;
+        }
+
+        /* --- Scoped Layout --- */
+        .ag-cap-section {
+            padding: 4rem 0;
+            background-color: var(--ag-cap-bg-main);
+        }
+
+        .ag-cap-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            box-sizing: border-box;
+        }
+
+        .ag-cap-grid-system {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        /* --- Scoped Header --- */
+        .ag-cap-header-block {
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: #ffffff;
+            border-radius: 24px;
+            order: -1;
+        }
+
+        .ag-cap-brand-sub {
+            color: var(--ag-cap-purple);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .ag-cap-title-main {
+            font-family: 'Nunito Sans', sans-serif !important;
+            font-weight: 700 !important;
+            letter-spacing: -0.01em !important;
+            font-size: 36px !important;
+            color: #310F5C;
+            text-transform: capitalize;
+            line-height: 1.25 !important;
+            margin-bottom: 1.5rem;
+        }
+
+        .ag-cap-caption-text {
+            font-size: 1.1rem;
+            color: #4b5563;
+            max-width: 60ch;
+            line-height: 1.6;
+        }
+
+        .ag-cap-strong-highlight {
+            display: block;
+            color: var(--ag-cap-purple);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        /* --- Scoped Card Components --- */
+        .ag-cap-feature-card {
+            position: relative;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+            background-color: var(--ag-cap-hover-bg);
+            /* PERFORMANCE FIX: Changed transition: all to specific properties */
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            box-sizing: border-box;
+            padding: 0;
+            border: none;
+        }
+
+        .ag-cap-card-inner {
+            padding: 2.5rem;
+            border-radius: 14px;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: padding 0.3s ease;
+            /* Specific transition */
+        }
+
+        .ag-cap-feature-card:hover {
+            transform: translateY(-5px);
+            background-color: var(--ag-cap-white);
+            box-shadow: 0 15px 35px -5px rgba(233, 213, 255, 1);
+            z-index: 10;
+        }
+
+        .ag-cap-feature-card:hover .ag-cap-card-body {
+            color: #4A5568;
+        }
+
+        .ag-cap-card-heading {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            text-transform: capitalize;
+            font-weight: 700;
+            color: #310F5C;
+        }
+
+        .ag-cap-card-body {
+            color: #5B2C98;
+            font-size: 1rem;
+            line-height: 1.6;
+            transition: color 0.3s ease;
+        }
+
+        .ag-cap-index-num {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 3rem;
+            color: var(--ag-cap-num-default);
+            font-weight: 800;
+            line-height: 1;
+            transition: font-size 0.3s ease, color 0.3s ease;
+        }
+
+        .ag-cap-feature-card:hover .ag-cap-index-num {
+            color: #A020F0 !important;
+            font-size: 4rem;
+        }
+
+        .ag-cap-icon-holder {
+            width: 3.5rem;
+            height: 3.5rem;
+            background-color: #ffffff;
+            color: var(--ag-cap-purple);
+            border: 1.5px solid var(--ag-cap-purple);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            /* PERFORMANCE FIX: Specific properties */
+            transition: background-color 0.3s ease, color 0.3s ease, width 0.3s ease, height 0.3s ease;
+        }
+
+        .ag-cap-feature-card:hover .ag-cap-icon-holder,
+        .ag-cap-feature-card.ag-cap-active .ag-cap-icon-holder {
+            background-color: var(--ag-cap-purple);
+            color: var(--ag-cap-white);
+            border-color: var(--ag-cap-purple);
+        }
+
+        .ag-cap-icon-holder svg {
+            width: 1.75rem;
+            height: 1.75rem;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        /* --- MOBILE STYLES (OPTIMIZED) --- */
+        @media (max-width: 767px) {
+            .ag-cap-section {
+                padding: 2rem 0;
+            }
+
+            .ag-cap-title-main {
+                font-size: 26px !important;
+                font-weight: 700 !important;
+                line-height: 1.3 !important;
+            }
+
+            .ag-cap-feature-card {
+                border-radius: 24px;
+                box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+                min-height: auto;
+                padding: 0;
+                cursor: pointer;
+                /* PERFORMANCE FIX: Removed 'transition: all'. Using specific properties prevents layout thrashing. */
+                transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+            }
+
+            .ag-cap-card-inner {
+                padding: 1.25rem;
+                border-radius: 14px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 1.25rem;
+            }
+
+            .ag-cap-feature-card.ag-cap-active {
+                background-color: var(--ag-cap-white);
+                box-shadow: 0 15px 35px -5px rgba(160, 32, 240, 0.2);
+            }
+
+            .ag-cap-feature-card.ag-cap-active .ag-cap-card-inner {
+                padding: 2rem 1.25rem;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .ag-cap-icon-holder {
+                width: 2.5rem;
+                height: 2.5rem;
+                margin-bottom: 0;
+                flex-shrink: 0;
+            }
+
+            .ag-cap-feature-card.ag-cap-active .ag-cap-icon-holder {
+                width: 3.5rem;
+                height: 3.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .ag-cap-card-heading {
+                margin-bottom: 0;
+                font-size: 1.1rem;
+            }
+
+            .ag-cap-feature-card.ag-cap-active .ag-cap-card-heading {
+                margin-bottom: 0.75rem;
+                font-size: 1.25rem;
+            }
+
+            .ag-cap-card-body {
+                max-height: 0;
+                opacity: 0;
+                overflow: hidden;
+                margin-top: 0;
+                /* PERFORMANCE FIX: Specific properties and will-change hint */
+                transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, margin-top 0.4s ease;
+                will-change: max-height, opacity;
+            }
+
+            .ag-cap-feature-card.ag-cap-active .ag-cap-card-body {
+                max-height: 300px;
+                opacity: 1;
+                margin-top: 0.5rem;
+                color: #4A5568;
+            }
+
+            .ag-cap-index-num {
+                display: none;
+            }
+
+            .ag-cap-feature-card.ag-cap-active .ag-cap-index-num {
+                display: block;
+                color: #A020F0 !important;
+                font-size: 2.5rem;
+            }
+        }
+
+        /* --- DESKTOP STYLES --- */
+        @media (min-width: 768px) {
+            .ag-cap-grid-system {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .ag-cap-header-block {
+                grid-column: 1 / -1;
+            }
+
+            .ag-cap-card-heading {
+                font-family: 'Nunito Sans', sans-serif !important;
+                font-size: 28px !important;
+                font-weight: 700 !important;
+                line-height: 1.3 !important;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .ag-cap-grid-system {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1.5rem;
+            }
+
+            .ag-cap-feature-card:hover .ag-cap-index-num {
+                color: #A020F0 !important;
+                font-size: 4.5rem;
+            }
+
+            .ag-cap-card-01 {
+                grid-column: 1;
+                grid-row: 1;
+                margin-left: 0;
+            }
+
+            .ag-cap-header-block {
+                grid-column: 2 / span 3;
+                grid-row: 1;
+                padding: 2.5rem;
+                text-align: center;
+                align-items: center;
+            }
+
+            .ag-cap-card-02 {
+                grid-column: 1;
+                grid-row: 2;
+                margin-left: 0;
+            }
+
+            .ag-cap-card-03 {
+                grid-column: 2;
+                grid-row: 2;
+            }
+
+            .ag-cap-card-04 {
+                grid-column: 3;
+                grid-row: 2;
+            }
+
+            .ag-cap-card-05 {
+                grid-column: 4;
+                grid-row: 2;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ag-cap-wrapper ag-capabilities-context-font">
+        <section id="ag-capabilities-section" class="ag-cap-section">
+            <div class="ag-cap-container">
+                <div class="ag-cap-grid-system">
+                    <div class="ag-cap-header-block">
+                        <span class="ag-cap-brand-sub">Vellora</span>
+                        <h2 class="ag-cap-title-main">5 Pillars of Service</h2>
+                        <div class="ag-cap-caption-text">
+                            <span class="ag-cap-strong-highlight">Every detail curated. Every journey elevated.</span>
+                            The foundation of a seamless and exceptional real estate experience.
+                        </div>
+                    </div>
+
+                    <div class="ag-cap-feature-card ag-cap-card-01">
+                        <div class="ag-cap-card-inner">
+                            <div class="ag-cap-index-num">01</div>
+                            <div class="ag-cap-icon-holder">
+                                <svg viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z">
+                                    </path>
+                                    <path d="M9 21h6"></path>
+                                </svg>
+                            </div>
+                            <div class="ag-cap-card-content">
+                                <h3 class="ag-cap-card-heading">Market Intelligence</h3>
+                                <p class="ag-cap-card-body">Transforming complex local market data into your competitive advantage for smarter investments.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ag-cap-feature-card ag-cap-card-02">
+                        <div class="ag-cap-card-inner">
+                            <div class="ag-cap-index-num">02</div>
+                            <div class="ag-cap-icon-holder">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                    <path
+                                        d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="ag-cap-card-content">
+                                <h3 class="ag-cap-card-heading">Seamless Transactions</h3>
+                                <p class="ag-cap-card-body">Orchestrating every detail from listing to closing, ensuring a stress-free and elegant experience.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ag-cap-feature-card ag-cap-card-03">
+                        <div class="ag-cap-card-inner">
+                            <div class="ag-cap-index-num">03</div>
+                            <div class="ag-cap-icon-holder">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 8V4H8"></path>
+                                    <rect x="4" y="8" width="16" height="12" rx="2"></rect>
+                                    <path d="M2 14h2"></path>
+                                    <path d="M20 14h2"></path>
+                                    <path d="M15 13v2"></path>
+                                    <path d="M9 13v2"></path>
+                                </svg>
+                            </div>
+                            <div class="ag-cap-card-content">
+                                <h3 class="ag-cap-card-heading">Dedicated Concierge</h3>
+                                <p class="ag-cap-card-body">Expert advisors who design a bespoke property journey around your personal and financial goals.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ag-cap-feature-card ag-cap-card-04">
+                        <div class="ag-cap-card-inner">
+                            <div class="ag-cap-index-num">04</div>
+                            <div class="ag-cap-icon-holder">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M23 6l-9.5 9.5-5-5L1 18"></path>
+                                    <path d="M17 6h6v6"></path>
+                                </svg>
+                            </div>
+                            <div class="ag-cap-card-content">
+                                <h3 class="ag-cap-card-heading">Future-Focused Valuation</h3>
+                                <p class="ag-cap-card-body">Anticipating neighborhood trends and property values to maximize your long-term equity.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ag-cap-feature-card ag-cap-card-05">
+                        <div class="ag-cap-card-inner">
+                            <div class="ag-cap-index-num">05</div>
+                            <div class="ag-cap-icon-holder">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M15 3h6v6"></path>
+                                    <path d="M9 21H3v-6"></path>
+                                    <path d="M21 3l-7 7"></path>
+                                    <path d="M3 21l7-7"></path>
+                                </svg>
+                            </div>
+                            <div class="ag-cap-card-content">
+                                <h3 class="ag-cap-card-heading">Expansive Network</h3>
+                                <p class="ag-cap-card-body">Unlocking access to exclusive, off-market opportunities before they reach the public.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        (function () {
+            const featureCards = document.querySelectorAll('.ag-cap-feature-card');
+            featureCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    if (card.classList.contains('ag-cap-active')) {
+                        card.classList.remove('ag-cap-active');
+                    } else {
+                        featureCards.forEach(c => c.classList.remove('ag-cap-active'));
+                        card.classList.add('ag-cap-active');
+                    }
+                });
+            });
+        })();
+    </script>
+</body>
+
+</html>

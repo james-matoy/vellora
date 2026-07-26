@@ -1,0 +1,192 @@
+<style>
+    /* 1. FONT IMPORT (No CDN link required) */
+    @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+    /* Global Overwrite */
+    html,
+    body {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        margin: 0;
+    }
+
+    .gem-glass-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 38px 60px 60px 60px !important;
+        background-color: #ffffff;
+    }
+
+    .gem-pro-card {
+        position: relative;
+        width: 100%;
+        max-width: 380px;
+        padding: 45px;
+        border-radius: 28px;
+
+        background: #ffffff;
+        border: 1px solid transparent;
+        box-shadow: none;
+
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        overflow: hidden;
+        cursor: pointer;
+        z-index: 1;
+        transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        box-sizing: border-box;
+    }
+
+    .gem-pro-card:hover {
+        background: #ffffff;
+        border-color: #e0e0e0;
+        box-shadow: 0 10px 30px #310F5C26;
+    }
+
+    .gem-pro-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background: radial-gradient(600px circle at var(--mouse-x, -100%) var(--mouse-y, -100%),
+                rgba(91, 44, 152, 0.12),
+                transparent 50%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+    }
+
+    .gem-pro-card::after {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: 28px;
+        padding: 1.8px;
+        z-index: 2;
+        background: radial-gradient(250px circle at var(--mouse-x, -100%) var(--mouse-y, -100%),
+                #5B2C98 0%,
+                rgba(91, 44, 152, 0.8) 15%,
+                rgba(91, 44, 152, 0.2) 40%,
+                transparent 60%);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+    }
+
+    .gem-pro-card:hover::before,
+    .gem-pro-card:hover::after {
+        opacity: 1;
+    }
+
+    .gem-row {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        position: relative;
+        z-index: 3;
+    }
+
+    .gem-icon {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .gem-pro-card:hover .gem-icon {
+        transform: scale(1.15);
+    }
+
+    .gem-icon svg {
+        fill: #5B2C98;
+        width: 100%;
+        height: auto;
+    }
+
+    .gem-label {
+        color: #5B2C98;
+        font-family: 'Nunito Sans', sans-serif;
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+        margin: 0;
+    }
+
+    /* Tablet Adjustment */
+    @media (max-width: 768px) {
+        .gem-glass-wrapper {
+            padding: 38px 45px 50px 45px !important;
+        }
+    }
+
+    /* Mobile Adjustment */
+    @media (max-width: 480px) {
+        .gem-glass-wrapper {
+            padding: 38px 35px 40px 35px !important;
+        }
+
+        .gem-pro-card {
+            width: 95%;
+            max-width: 310px;
+            padding: 35px 20px;
+        }
+
+        .gem-label {
+            font-size: 18px;
+        }
+    }
+</style>
+
+<div class="gem-glass-wrapper">
+    <div class="gem-pro-card">
+        <div class="gem-row">
+            <div class="gem-icon">
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+                </svg>
+            </div>
+            <div class="gem-label">Global Reach</div>
+        </div>
+
+        <div class="gem-row">
+            <div class="gem-icon">
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z" />
+                </svg>
+            </div>
+            <div class="gem-label">Lightning Fast</div>
+        </div>
+
+        <div class="gem-row">
+            <div class="gem-icon">
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                </svg>
+            </div>
+            <div class="gem-label">Trusted Partner</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('mousemove', (e) => {
+        const cards = document.querySelectorAll('.gem-pro-card');
+        cards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty("--mouse-x", `${x}px`);
+            card.style.setProperty("--mouse-y", `${y}px`);
+        });
+    });
+</script>

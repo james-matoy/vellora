@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgentGenius | AI Solutions</title>
+</head>
+<body>
+
+    <header class="ag-header">
+        <div class="ag-container">
+            <a href="https://agentgenius.ai/#" class="ag-logo" aria-label="AgentGenius Home">
+                <img src="https://agentgenius.ai/wp-content/uploads/2026/03/agentgenius_ai_logo_withoutbackground-e1774300693164.webp" 
+                     alt="AgentGenius Logo" 
+                     width="200" 
+                     height="45" />
+            </a>
+
+            <nav class="ag-nav" id="ag-nav" aria-label="Main Navigation">
+                <ul>
+                    <li><a href="https://agentgenius.ai/#agent-genius-hero">Home</a></li>
+                    <li><a href="https://agentgenius.ai/#what-we-do">What We Do</a></li>
+                    <li><a href="https://agentgenius.ai/#who-we-help">Who We Help</a></li>
+                    <li><a href="https://agentgenius.ai/#how-it-works">How it Works</a></li>
+                    <li><a href="https://agentgenius.ai/#FAQ">FAQ</a></li>
+                    <li><a href="https://agentgenius.ai/#contact">Contact</a></li>
+                    <li><a href="https://agentgenius.ai/about/">About Us</a></li>
+                    <li><a href="https://agentgenius.ai/blogs/">Blogs</a></li>
+                </ul>
+            </nav>
+
+            <div class="ag-actions">
+                <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1FpsT1ABes0yas-CoPQBy9RZ4C81HKLOq1iX5UGWtlb-U90di83Ekx2PLYQlR7fdRJsYM8dvq8"
+                    target="_blank" 
+                    class="ag-btn">
+                    Book Strategy Call
+                </a>
+                <div class="ag-menu-toggle" id="ag-menu-toggle" aria-label="Toggle Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        </main>
+
+    <style>
+        /* 1. RESET & BASE (Mobile-First) */
+        html, body {
+            margin: 0 !important;
+            padding: 0 !important;
+            box-sizing: border-box;
+            background-color: #000;
+        }
+
+        /* 2. HEADER */
+        .ag-header {
+            font-family: 'Nunito', sans-serif;
+            position: fixed;
+            top: 0 !important;
+            padding: 15px 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 99999;
+            background: transparent;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .ag-header.scrolled {
+            background: rgba(107, 42, 139, 0.8); 
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 10px 0 !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .ag-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .ag-logo {
+            display: flex;
+            align-items: center;
+            height: 45px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .ag-logo img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+            display: block;
+        }
+
+        /* 3. MOBILE NAV (Default) */
+        .ag-nav {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: rgba(107, 42, 139, 0.95);
+            backdrop-filter: blur(15px);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .ag-nav.active {
+            max-height: 80vh;
+        }
+
+        .ag-nav ul {
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+            gap: 0;
+            margin: 0;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .ag-nav ul li a {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 16px;
+            display: block;
+            padding: 12px;
+        }
+
+        /* 4. ACTIONS & MENU TOGGLE - FIXED X LOGIC */
+        .ag-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .ag-btn {
+            background: #FFFFFF;
+            color: #6B2A8B; 
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 11px;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        .ag-menu-toggle {
+            cursor: pointer;
+            width: 25px;
+            height: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            z-index: 100000;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .ag-menu-toggle span {
+            width: 100%;
+            height: 2px;
+            background-color: #FFFFFF;
+            display: block;
+            transition: all 0.3s ease-in-out;
+            transform-origin: center;
+        }
+
+        /* THE X TRANSFORMATION */
+        /* Center line disappears */
+        .ag-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(10px);
+        }
+
+        /* Top line rotates to 45deg and moves down to center */
+        .ag-menu-toggle.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        /* Bottom line rotates to -45deg and moves up to center */
+        .ag-menu-toggle.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* 5. DESKTOP OVERRIDES (untouched) */
+        @media (min-width: 1101px) {
+            .ag-menu-toggle {
+                display: none;
+            }
+            .ag-nav {
+                position: static;
+                width: auto;
+                background: transparent;
+                backdrop-filter: none;
+                max-height: none;
+                overflow: visible;
+            }
+            .ag-nav ul {
+                flex-direction: row;
+                gap: 20px;
+                padding: 0;
+            }
+            .ag-nav ul li a {
+                padding: 0;
+                font-size: 13px;
+            }
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('ag-menu-toggle');
+            const nav = document.getElementById('ag-nav');
+            const header = document.querySelector('.ag-header');
+
+            // Explicit click handler to toggle the .active class on the button itself
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Toggle the nav menu visibility
+                nav.classList.toggle('active');
+                
+                // Toggle the class on the toggle div itself so CSS knows to turn it into an X
+                toggle.classList.toggle('active');
+            });
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 30) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }, { passive: true });
+
+            // Close menu when clicking document
+            document.addEventListener('click', () => {
+                if(nav.classList.contains('active')) {
+                    nav.classList.remove('active');
+                    toggle.classList.remove('active');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

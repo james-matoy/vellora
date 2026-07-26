@@ -1,0 +1,106 @@
+<header class="ag-header">
+    <div class="ag-container">
+        <nav class="ag-nav">
+            <ul>
+                <li>
+                    <a href="https://agentgenius.ai/" class="back-link">
+                        <svg width="24" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 12H4M4 12L10 6M4 12L10 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="back-text">Back to Home</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<style>
+    /* 1. RESET */
+    html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* 2. HEADER - Liquid Blurred Glass Effect */
+    .ag-header {
+        font-family: 'Nunito', sans-serif;
+        position: fixed;
+        top: 0 !important;
+        padding: 15px 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        z-index: 99999;
+        background: transparent;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .ag-header.scrolled {
+        background: rgba(107, 42, 139, 0.8); 
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        padding: 10px 0 !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .ag-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 0 20px;
+        max-width: 1300px;
+        margin: 0 auto;
+    }
+
+    /* 3. NAV LINKS */
+    .ag-nav ul {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .back-link {
+        color: #FFFFFF;
+        text-decoration: none;
+        font-weight: 800;
+        text-transform: uppercase;
+        font-size: 15px;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        /* Smooth transition for color instead of opacity */
+        transition: color 0.3s ease; 
+    }
+
+    /* HOVER COLOR FIX: Solid light color matching your second screenshot */
+    .back-link:hover {
+        color: #d1c4e9; /* Light lavender/gray color */
+        opacity: 1; /* Ensures no transparency is applied */
+    }
+
+    .back-link svg {
+        display: block;
+        flex-shrink: 0;
+    }
+
+    .back-text {
+        line-height: 1;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const header = document.querySelector('.ag-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 30) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    });
+</script>

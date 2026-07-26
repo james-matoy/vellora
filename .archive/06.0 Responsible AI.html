@@ -1,0 +1,456 @@
+--New--
+
+<div class="dsa-wrapper">
+
+    <section class="trust-section">
+        <div class="ag-container split-layout">
+
+            <div class="trust-left-col" id="trustHeader">
+                <h2>Responsible AI:<br>Human at the Core</h2>
+                <p class="lead-text">
+                    True innovation requires trust. We prioritize ethical AI implementation that empowers your team
+                    rather than replacing it.
+                </p>
+            </div>
+
+            <div class="trust-right-col" id="scrollContainer">
+
+                <div class="trust-item">
+                    <div class="icon-square">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                    </div>
+                    <div class="trust-content">
+                        <h3>Human-Centric Design</h3>
+                        <p>We design workflows where every algorithm operates with oversight. AI handles the rote work;
+                            humans make the judgment calls.</p>
+                    </div>
+                </div>
+
+                <div class="trust-item" id="defaultItem">
+                    <div class="icon-square">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                            <circle cx="12" cy="12" r="3" />
+                        </svg>
+                    </div>
+                    <div class="trust-content">
+                        <h3>Total Transparency</h3>
+                        <p>No black boxes. You maintain full ownership and visibility into how every decision is made
+                            within your custom agents.</p>
+                    </div>
+                </div>
+
+                <div class="trust-item">
+                    <div class="icon-square">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                        </svg>
+                    </div>
+                    <div class="trust-content">
+                        <h3>Enterprise Security</h3>
+                        <p>Data privacy and compliance are built-in. We ensure your business stays secure while you
+                            scale operations.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const container = document.getElementById('scrollContainer');
+        const items = document.querySelectorAll('.trust-item');
+        const defaultItem = document.getElementById('defaultItem');
+
+        let isAnimating = false;
+        let scrollTimeout;
+
+        // 1. CLICK HANDLER
+        items.forEach(item => {
+            item.addEventListener('click', (e) => {
+                isAnimating = true;
+                clearTimeout(scrollTimeout);
+
+                items.forEach(el => el.classList.remove('active'));
+                item.classList.add('active');
+
+                item.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center',
+                    inline: 'center'
+                });
+
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 600);
+            });
+        });
+
+        // 2. SCROLL HANDLER
+        const onScroll = () => {
+            if (isAnimating) return;
+
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                const containerRect = container.getBoundingClientRect();
+                const containerCenter = containerRect.top + containerRect.height / 2;
+
+                let closestItem = null;
+                let minDiff = Infinity;
+
+                items.forEach(item => {
+                    const itemRect = item.getBoundingClientRect();
+                    const itemCenter = itemRect.top + itemRect.height / 2;
+                    const diff = Math.abs(containerCenter - itemCenter);
+
+                    if (diff < minDiff) {
+                        minDiff = diff;
+                        closestItem = item;
+                    }
+                });
+
+                if (closestItem) {
+                    items.forEach(i => i.classList.remove('active'));
+                    closestItem.classList.add('active');
+                }
+            }, 50);
+        };
+
+        container.addEventListener('scroll', onScroll);
+
+        // 3. INITIAL SETUP
+        if (defaultItem) {
+            defaultItem.classList.add('active');
+            setTimeout(() => {
+                defaultItem.scrollIntoView({
+                    behavior: 'auto',
+                    block: 'center'
+                });
+            }, 100);
+        }
+    });
+</script>
+
+<style>
+    /* --- FONT & VARIABLES --- */
+    .dsa-wrapper {
+        font-family: 'Nunito Sans', sans-serif;
+    }
+
+    :root {
+        --brand-dark: #310F5C;
+        --accent-neon: #A020F0;
+        --glass-bg: rgba(255, 255, 255, 0.75);
+        --glass-border: rgba(255, 255, 255, 0.6);
+    }
+
+    .trust-section {
+        background-color: transparent;
+        padding: 80px 0;
+        position: relative;
+        font-family: inherit;
+    }
+
+    .ag-container.split-layout {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 60px;
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        height: 550px;
+    }
+
+    /* --- LEFT COLUMN --- */
+    .trust-left-col {
+        flex: 1;
+        max-width: 450px;
+        position: relative;
+        top: auto;
+    }
+
+    .trust-left-col h2 {
+        color: #310F5C;
+        font-weight: 600;
+        line-height: 1.1;
+        margin-bottom: 24px;
+        font-size: 40px;
+        font-family: inherit;
+    }
+
+    .trust-left-col .lead-text {
+        color: #4B5563;
+        font-weight: 400;
+        line-height: 1.6;
+        font-size: 18px;
+        font-family: inherit;
+    }
+
+    /* --- RIGHT COLUMN (Desktop List) --- */
+    .trust-right-col {
+        flex: 1;
+        height: 100%;
+        overflow-y: auto;
+        padding: 200px 0;
+        position: relative;
+        padding-right: 15px;
+        scroll-behavior: smooth;
+        scroll-snap-type: y mandatory;
+    }
+
+    .trust-right-col::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .trust-right-col::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .trust-right-col::-webkit-scrollbar-thumb {
+        background-color: transparent;
+        border-radius: 20px;
+    }
+
+    .trust-right-col:hover::-webkit-scrollbar-thumb {
+        background-color: rgba(91, 44, 152, 0.3);
+    }
+
+    /* --- CARD ITEMS (Base) --- */
+    .trust-item {
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+        padding: 24px;
+        margin-bottom: 20px;
+        border-radius: 16px;
+        transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        border: 1px solid transparent;
+        cursor: pointer;
+        position: relative;
+        scroll-snap-align: center;
+    }
+
+    .trust-item * {
+        pointer-events: none;
+    }
+
+    /* --- ACTIVE STATE (Desktop) --- */
+    /* (This applies to Desktop active state) */
+    /* (Mobile overrides this below for Inactive blur) */
+
+    /* --- ICONS & CONTENT --- */
+    .icon-square {
+        background-color: var(--accent-neon);
+        min-width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        color: #FFFFFF;
+        flex-shrink: 0;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .trust-content h3 {
+        color: #310F5C;
+        font-weight: 700;
+        margin: 0 0 8px 0;
+        line-height: 1.2;
+        font-size: 24px;
+        font-family: inherit;
+        transition: color 0.3s ease;
+    }
+
+    .trust-content p {
+        color: #4B5563;
+        font-weight: 400;
+        line-height: 1.5;
+        margin: 0;
+        font-size: 16px;
+        font-family: inherit;
+        transition: color 0.3s ease;
+    }
+
+    /* =========================================
+   DESKTOP STYLES (Min Width 901px)
+   ========================================= */
+    @media (min-width: 901px) {
+
+        /* Inactive State */
+        .trust-item {
+            opacity: 0.5;
+            transform: scale(1);
+        }
+
+        /* Active State */
+        .trust-item.active {
+            opacity: 1 !important;
+            transform: scale(1.05) !important;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px rgba(49, 15, 92, 0.15);
+            z-index: 2;
+        }
+
+        .trust-item.active .icon-square {
+            transform: scale(1.1) rotate(-3deg);
+        }
+
+        /* Hover State (Desktop Only) */
+        @media (hover: hover) {
+            .trust-item:hover:not(.active) {
+                opacity: 1;
+                background: rgba(255, 255, 255, 0.5);
+                backdrop-filter: blur(8px);
+                border: 1px solid rgba(255, 255, 255, 0.4);
+            }
+
+            .trust-item:hover .icon-square {
+                background-color: #00C4B4;
+                /* Teal */
+                transform: scale(1.1) rotate(-3deg);
+            }
+
+            .trust-item:hover .trust-content h3 {
+                color: #5B2C98;
+            }
+
+            .trust-item:hover .trust-content p {
+                color: #4A5568;
+            }
+        }
+    }
+
+    /* =========================================
+   MOBILE STYLES (Max Width 900px)
+   ========================================= */
+    @media (max-width: 900px) {
+        .trust-section {
+            padding: 60px 0 0 0;
+        }
+
+        .ag-container.split-layout {
+            flex-direction: column;
+            height: auto;
+
+            /* Reduced gap to decrease space between text and cards */
+            gap: 0px;
+
+            padding: 0 1.5rem;
+        }
+
+        .trust-left-col {
+            max-width: 100%;
+            text-align: center;
+            position: relative;
+            /* Ensure no margin pushing it away */
+            margin-bottom: 0;
+        }
+
+        .trust-left-col h2 {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .trust-left-col .lead-text {
+            font-size: 16px;
+        }
+
+        .trust-right-col {
+            /* Reduced Height (300px) brings the center-point up, reducing visual gap */
+            height: 300px;
+
+            width: 100%;
+            padding: calc(50% - 60px) 0;
+            overflow-y: auto;
+            scroll-snap-type: none;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            perspective: 1000px;
+        }
+
+        .trust-right-col::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* --- MOBILE CARD STATES --- */
+
+        /* 1. INACTIVE STATE (Mobile with Blur) */
+        .trust-item {
+            padding: 16px;
+            gap: 12px;
+
+            opacity: 0.5;
+            transform: scale(0.9);
+
+            /* RESTORED BLUR FOR INACTIVE MOBILE CARDS */
+            filter: blur(3px) grayscale(80%);
+
+            background: transparent;
+            border: 1px solid transparent;
+            box-shadow: none;
+            pointer-events: auto;
+        }
+
+        /* 2. ACTIVE STATE (Mobile matches Desktop Active Style) */
+        .trust-item.active {
+            opacity: 1 !important;
+            transform: scale(1.05) !important;
+
+            /* REMOVE BLUR */
+            filter: none !important;
+
+            /* Desktop Active Styles */
+            background: var(--glass-bg) !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15) !important;
+            border: 1px solid var(--glass-border) !important;
+            z-index: 10;
+        }
+
+        /* Icon Behavior (Matches Desktop Active) */
+        .trust-item.active .icon-square {
+            background-color: var(--accent-neon) !important;
+            /* Purple */
+            transform: scale(1.1) rotate(-3deg);
+        }
+
+        /* Mobile Font Adjustments */
+        .icon-square {
+            min-width: 40px;
+            height: 40px;
+        }
+
+        .icon-square svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .trust-content h3 {
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .trust-content p {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+    }
+</style>

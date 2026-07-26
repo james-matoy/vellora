@@ -1,0 +1,95 @@
+<div class="expertise-logo-container">
+    <div class="logo-grid">
+        <div class="logo-item">
+            <img src="https://agentgenius.ai/wp-content/uploads/2025/12/google-workspace-logo-wordmark-expertise.png" alt="Google Workspace">
+        </div>
+        <div class="logo-item">
+            <img src="https://agentgenius.ai/wp-content/uploads/2025/12/n8n-workflow-logo-wordmark-expertise.png" alt="n8n">
+        </div>
+        <div class="logo-item">
+            <img src="https://agentgenius.ai/wp-content/uploads/2025/12/make-automation-logo-wordmark-expertise.png" alt="Make">
+        </div>
+        <div class="logo-item">
+            <img src="https://agentgenius.ai/wp-content/uploads/2025/12/zapier-integration-logo-wordmark-expertise.png" alt="Zapier">
+        </div>
+        <div class="logo-item">
+            <img src="https://agentgenius.ai/wp-content/uploads/2025/12/google-gemini-ai-logo-wordmark-expertise.png" alt="Gemini">
+        </div>
+
+        <div class="logo-item">
+            <img src="https://agentgenius.ai/wp-content/uploads/2025/12/anthropic-claude-logo-wordmark-expertise.png" alt="Claude">
+        </div>
+        <div class="logo-item">
+            <img src="https://agentgenius.ai/wp-content/uploads/2025/12/openai-chatgpt-logo-wordmark-expertise.png" alt="OpenAI">
+        </div>
+        <div class="logo-item">
+            <img src="https://agentgenius.ai/wp-content/uploads/2025/12/hubspot-crm-logo-wordmark-expertise.png" alt="HubSpot">
+        </div>
+        <div class="logo-item">
+            <img src="https://agentgenius.ai/wp-content/uploads/2025/12/supabase-database-logo-wordmark-expertise.png" alt="Supabase">
+        </div>
+        <div class="logo-item">
+            <img src="https://agentgenius.ai/wp-content/uploads/2025/12/lovable-ai-logo-wordmark-expertise.png" alt="Lovable">
+        </div>
+    </div>
+</div>
+
+<style>
+    .expertise-logo-container {
+        width: 100%;
+        padding: 30px 0;
+        overflow: hidden;
+    }
+
+    .expertise-logo-container .logo-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        /* Increased gap slightly for a cleaner look with smaller logos */
+        gap: 40px; 
+        width: 100%;
+        margin: 0 auto;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    .expertise-logo-container .logo-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .expertise-logo-container .logo-item img {
+        /* Reduced from 180px to 130px to make them smaller */
+        width: 100%;
+        max-width: 130px; 
+        height: auto;
+        filter: grayscale(100%);
+        opacity: 0.6;
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease, opacity 0.3s ease;
+    }
+
+    .expertise-logo-container .logo-item img:hover {
+        filter: grayscale(0%);
+        opacity: 1;
+        transform: scale(1.1);
+        cursor: pointer;
+    }
+
+    /* Tablet/Mobile responsiveness */
+    @media (max-width: 1024px) {
+        .expertise-logo-container .logo-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .expertise-logo-container .logo-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .expertise-logo-container .logo-item img {
+            max-width: 100px;
+        }
+    }
+</style>

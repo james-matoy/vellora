@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  /* 1. The Main Container (The Pill) */
+  .search-pill {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff; /* White background for the whole bar */
+    border-radius: 50px;       /* Fully rounded corners */
+    padding: 10px 20px;        /* Spacing inside the bar */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for the pill */
+    width: 100%;
+    max-width: 450px;
+    font-family: sans-serif;
+  }
+
+  /* 2. The Search Icon */
+  .search-icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 15px;
+    color: #888; /* Grey color for icon */
+  }
+
+  /* 3. The Input Field (Text) - THE FIX IS HERE */
+  .search-text {
+    flex-grow: 1;                /* Fills the rest of the space */
+    border: none !important;     /* REMOVES border */
+    outline: none !important;    /* REMOVES blue outline on click */
+    background: transparent !important; /* REMOVES the white box background */
+    box-shadow: none !important; /* REMOVES the inner shadow */
+    font-size: 16px;
+    color: #555;
+    padding: 0;
+    margin: 0;
+    cursor: default;             /* Changes cursor to pointer/default since it's not for typing */
+  }
+
+  /* Placeholder text styling */
+  .search-text::placeholder {
+    color: #999;
+    opacity: 1;
+  }
+</style>
+</head>
+<body>
+
+  <div class="search-pill">
+    <svg class="search-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+    </svg>
+    
+    <input 
+      type="text" 
+      class="search-text" 
+      placeholder="Search our knowledge base" 
+      aria-label="Search our knowledge base"
+      readonly
+    >
+  </div>
+
+</body>
+</html>

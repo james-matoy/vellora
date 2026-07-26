@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+      /* Scoped to ID to prevent bleeding into other Elementor sections */
+      #ag-terms-header {
+        margin: 0;
+        /* Height increased by 1.5x (80px * 1.5 = 120px) */
+        padding: 120px 20px; 
+        background-color: #5E256C !important;
+        font-family: 'Nunito Sans', sans-serif !important;
+        color: #ffffff !important;
+        text-align: center;
+        overflow: hidden; 
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      #ag-terms-header h1 {
+        font-size: 52px !important;
+        font-weight: 600 !important; /* Updated Weight */
+        color: #F4F2EE !important; /* Updated Color */
+        margin: 0 0 15px 0 !important;
+        line-height: 1.2 !important;
+        letter-spacing: -0.02em !important;
+      }
+
+      #ag-terms-header .effective-date {
+        font-size: 20px !important;
+        font-weight: 400 !important;
+        margin: 0 0 50px 0 !important;
+        color: #ffffff !important;
+        opacity: 0.9;
+      }
+
+      #ag-terms-header .contact-links {
+        font-size: 18px !important;
+      }
+
+      #ag-terms-header .contact-links p {
+        margin: 10px 0 !important;
+        color: #ffffff !important;
+      }
+
+      #ag-terms-header a {
+        color: #ffffff !important;
+        text-decoration: underline !important;
+        transition: opacity 0.2s;
+      }
+
+      #ag-terms-header a:hover {
+        opacity: 0.8;
+      }
+
+      /* Mobile adjustments for Elementor responsiveness */
+      @media (max-width: 768px) {
+        #ag-terms-header h1 {
+          font-size: 36px !important;
+        }
+        #ag-terms-header {
+          padding: 75px 15px;
+        }
+      }
+    </style>
+</head>
+<body>
+
+    <div id="ag-terms-header">
+        <h1>Terms of Services</h1>
+        <p class="effective-date">Effective Date: July 01, 2025</p>
+
+        <div class="contact-links">
+            <p>Website: <a href="https://agentgenius.ai/" target="_blank">https://agentgenius.ai/</a></p>
+            <p>Contact: <a href="mailto:team@agentgenius.ai">team@agentgenius.ai</a></p>
+        </div>
+    </div>
+
+</body>
+</html>

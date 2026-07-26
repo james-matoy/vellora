@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industry Solutions Navigation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- FONT & ROOT CONFIG --- */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --brand-dark: #310F5C;
+            --text-body: #4B5563;
+            --teal-hover: #00C4B4;
+            --bg-hover-lavender: #E6E6FA;
+            --border-neon-purple: #A020F0;
+            --desktop-view-height: 480px;
+        }
+
+        .dsa-wrapper {
+            font-family: 'Nunito Sans', sans-serif;
+            padding: 60px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* --- LAYOUT --- */
+        .ag-container.split-layout {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        .ag-sidebar {
+            flex: 0 0 320px;
+            position: sticky;
+            top: 20px;
+        }
+
+        .ag-tabs {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* --- NAVIGATION TABS --- */
+        .tab-btn {
+            background-color: #FFFFFF !important;
+            border: 2px solid var(--teal-hover);
+            color: var(--teal-hover);
+            padding: 14px 24px;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            text-align: left;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--border-neon-purple);
+            color: var(--border-neon-purple);
+            transform: translateX(5px);
+        }
+
+        .tab-btn.active {
+            color: var(--border-neon-purple) !important;
+            border-color: var(--border-neon-purple) !important;
+            box-shadow: 0 6px 12px rgba(160, 32, 240, 0.15);
+        }
+
+        /* --- ICON INDICATORS --- */
+        .icon-indicator {
+            position: relative;
+            width: 22px;
+            height: 22px;
+            flex-shrink: 0;
+        }
+
+        .icon-default,
+        .icon-active {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            fill: currentColor;
+        }
+
+        .icon-default {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .icon-active {
+            opacity: 0;
+            transform: scale(0.5) rotate(-45deg);
+            width: 14px;
+            left: 4px;
+        }
+
+        .tab-btn.active .icon-default {
+            opacity: 0;
+            transform: scale(0.5) rotate(45deg);
+        }
+
+        .tab-btn.active .icon-active {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        /* --- SHARED CARD STYLING --- */
+        .solution-card {
+            background: #FFFFFF;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+            box-sizing: border-box;
+            align-items: center;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .card-icon img {
+            height: 60px;
+            width: auto;
+            transition: all 0.3s ease;
+        }
+
+        .solution-card h2 {
+            color: var(--brand-dark);
+            font-size: 20px;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .solution-card p {
+            color: var(--text-body);
+            font-size: 15px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* --- DESKTOP VIEW --- */
+        @media (min-width: 1025px) {
+            .ag-content-stream {
+                flex: 1;
+                height: var(--desktop-view-height);
+                overflow-y: auto;
+                scroll-snap-type: y mandatory;
+                scrollbar-width: none;
+                padding-top: 20px;
+            }
+
+            .ag-content-stream::-webkit-scrollbar {
+                display: none;
+            }
+
+            .content-section {
+                height: var(--desktop-view-height);
+                scroll-snap-align: start;
+                scroll-snap-stop: always;
+                display: block !important;
+            }
+
+            .ag-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+                padding: 10px 0 40px 0;
+            }
+
+            .solution-card {
+                height: 360px;
+                opacity: 0.95;
+            }
+
+            .solution-card:hover {
+                opacity: 1;
+                transform: translateY(-10px);
+                background-color: var(--bg-hover-lavender);
+                border-color: var(--border-neon-purple);
+                box-shadow: 0 12px 24px rgba(160, 32, 240, 0.2);
+                z-index: 10;
+            }
+        }
+
+        /* --- MOBILE VIEW --- */
+        @media (max-width: 1024px) {
+            .dsa-wrapper {
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            .ag-container.split-layout {
+                display: block !important;
+                padding: 0 10px !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+            }
+
+            .ag-sidebar {
+                display: block !important;
+                position: sticky;
+                top: 0;
+                width: 100%;
+                z-index: 100;
+                background: transparent !important;
+                padding: 10px 0 12px 0 !important;
+                margin: 0 !important;
+            }
+
+            .ag-tabs {
+                gap: 4px !important;
+            }
+
+            .tab-btn {
+                width: 100%;
+                padding: 10px;
+                font-size: 13.5px;
+                margin: 0 !important;
+            }
+
+            .ag-content-stream {
+                display: block !important;
+                height: auto;
+                padding: 0 !important;
+                margin: 0 !important;
+                margin-top: 0 !important;
+            }
+
+            .content-section {
+                display: none;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            .content-section.active-section {
+                display: block !important;
+            }
+
+            .ag-grid {
+                display: grid !important;
+                grid-template-columns: 1fr;
+                gap: 8px !important;
+                padding: 0 0 20px 0 !important;
+                margin: 0 !important;
+            }
+
+            /* --- ORIGINAL MOBILE CARD (Horizontal, Small Icon) --- */
+            .solution-card {
+                flex-direction: row !important;
+                padding: 12px 15px !important;
+                align-items: center !important;
+                justify-content: flex-start !important;
+                gap: 12px !important;
+                text-align: left !important;
+                margin: 0 !important;
+                background: #FFFFFF;
+                /* Ensure base is white */
+            }
+
+            .card-icon img {
+                height: 32px !important;
+                margin: 0 !important;
+            }
+
+            .card-content {
+                display: flex;
+                align-items: center;
+            }
+
+            .solution-card h2 {
+                font-size: 15px !important;
+                margin: 0 !important;
+                line-height: 1 !important;
+            }
+
+            .solution-card .card-content p {
+                display: none !important;
+            }
+
+            /* --- ACTIVE STATE (Desktop Styles Applied Here) --- */
+            .solution-card.active-card {
+                flex-direction: column !important;
+                text-align: center !important;
+                padding: 25px 20px !important;
+
+                /* DESKTOP HOVER STYLES APPLIED ON TAP */
+                background-color: var(--bg-hover-lavender) !important;
+                border-color: var(--border-neon-purple) !important;
+                box-shadow: 0 12px 24px rgba(160, 32, 240, 0.2) !important;
+                transform: translateY(-5px) !important;
+                /* Slight lift */
+                z-index: 10;
+            }
+
+            .solution-card.active-card .card-icon img {
+                height: 50px !important;
+                margin-bottom: 10px !important;
+            }
+
+            .solution-card.active-card .card-content {
+                flex-direction: column;
+            }
+
+            .solution-card.active-card .card-content p {
+                display: block !important;
+                margin-top: 12px !important;
+                line-height: 1.4 !important;
+                animation: fadeIn 0.4s ease forwards;
+                color: var(--text-body);
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-5px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="dsa-wrapper">
+        <div class="ag-container split-layout">
+            <div class="ag-sidebar">
+                <div class="ag-tabs">
+                    <button class="tab-btn active" data-target="section-finance">
+                        <span class="icon-indicator">
+                            <svg class="icon-default" viewBox="0 0 512 512">
+                                <path
+                                    d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm-32-316v116h-67c-10.7 0-16 12.9-8.5 20.5l99 99c4.7 4.7 12.3 4.7 17 0l99-99c7.6-7.6 2.2-20.5-8.5-20.5h-67V140c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12z" />
+                            </svg>
+                            <svg class="icon-active" viewBox="0 0 288 512">
+                                <path
+                                    d="M112 316.94v156.69l22.02 33.02c4.75 7.12 15.22 7.12 19.97 0L176 473.63V316.94c-10.39 1.92-21.06 3.06-32 3.06s-21.61-1.14-32-3.06zM144 0C64.47 0 0 64.47 0 144s64.47 144 144 144 144-64.47 144-144S223.53 0 144 0zm0 76c-37.5 0-68 30.5-68 68 0 6.62-5.38 12-12 12s-12-5.38-12-12c0-50.73 41.28-92 92-92 6.62 0 12 5.38 12 12s-5.38 12-12 12z" />
+                            </svg>
+                        </span>
+                        Finance, Legal & HR
+                    </button>
+                    <button class="tab-btn" data-target="section-industrial">
+                        <span class="icon-indicator">
+                            <svg class="icon-default" viewBox="0 0 512 512">
+                                <path
+                                    d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm-32-316v116h-67c-10.7 0-16 12.9-8.5 20.5l99 99c4.7 4.7 12.3 4.7 17 0l99-99c7.6-7.6 2.2-20.5-8.5-20.5h-67V140c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12z" />
+                            </svg>
+                            <svg class="icon-active" viewBox="0 0 288 512">
+                                <path
+                                    d="M112 316.94v156.69l22.02 33.02c4.75 7.12 15.22 7.12 19.97 0L176 473.63V316.94c-10.39 1.92-21.06 3.06-32 3.06s-21.61-1.14-32-3.06zM144 0C64.47 0 0 64.47 0 144s64.47 144 144 144 144-64.47 144-144S223.53 0 144 0zm0 76c-37.5 0-68 30.5-68 68 0 6.62-5.38 12-12 12s-12-5.38-12-12c0-50.73 41.28-92 92-92 6.62 0 12 5.38 12 12s-5.38 12-12 12z" />
+                            </svg>
+                        </span>
+                        Industrial & Retail
+                    </button>
+                    <button class="tab-btn" data-target="section-realestate">
+                        <span class="icon-indicator">
+                            <svg class="icon-default" viewBox="0 0 512 512">
+                                <path
+                                    d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm-32-316v116h-67c-10.7 0-16 12.9-8.5 20.5l99 99c4.7 4.7 12.3 4.7 17 0l99-99c7.6-7.6 2.2-20.5-8.5-20.5h-67V140c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12z" />
+                            </svg>
+                            <svg class="icon-active" viewBox="0 0 288 512">
+                                <path
+                                    d="M112 316.94v156.69l22.02 33.02c4.75 7.12 15.22 7.12 19.97 0L176 473.63V316.94c-10.39 1.92-21.06 3.06-32 3.06s-21.61-1.14-32-3.06zM144 0C64.47 0 0 64.47 0 144s64.47 144 144 144 144-64.47 144-144S223.53 0 144 0zm0 76c-37.5 0-68 30.5-68 68 0 6.62-5.38 12-12 12s-12-5.38-12-12c0-50.73 41.28-92 92-92 6.62 0 12 5.38 12 12s-5.38 12-12 12z" />
+                            </svg>
+                        </span>
+                        Real Estate & Marketing
+                    </button>
+                </div>
+            </div>
+
+            <div class="ag-content-stream" id="scrollWindow">
+                <div id="section-finance" class="content-section">
+                    <div class="ag-grid">
+                        <div class="solution-card">
+                            <div class="card-icon"><img
+                                    src="https://agentgenius.ai/wp-content/uploads/2025/12/health-insurance-medical-safety-coverage-shield-icon-scaled.webp"
+                                    alt="Insurance"></div>
+                            <div class="card-content">
+                                <h2>Insurance & Financial</h2>
+                                <p>Transform repetitive administrative and compliance tasks into intelligent workflows.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="solution-card">
+                            <div class="card-icon"><img
+                                    src="https://agentgenius.ai/wp-content/uploads/2025/12/legal-services-law-firm-justice-attorney-scales-icon-scaled.webp"
+                                    alt="Legal"></div>
+                            <div class="card-content">
+                                <h2>Law Firms & Legal</h2>
+                                <p>Transform your practice by converting standard client intake into intelligent
+                                    systems.</p>
+                            </div>
+                        </div>
+                        <div class="solution-card">
+                            <div class="card-icon"><img
+                                    src="https://agentgenius.ai/wp-content/uploads/2025/12/talent-acquisition-recruitment-hiring-employee-search-icon-scaled.webp"
+                                    alt="HR"></div>
+                            <div class="card-content">
+                                <h2>Recruitment & HR</h2>
+                                <p>Scale your talent acquisition pipeline by automating sourcing processes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="section-industrial" class="content-section">
+                    <div class="ag-grid">
+                        <div class="solution-card">
+                            <div class="card-icon"><img
+                                    src="https://agentgenius.ai/wp-content/uploads/2025/12/industrial-engineering-construction-safety-helmet-gear-icon-scaled.webp"
+                                    alt="Construction"></div>
+                            <div class="card-content">
+                                <h2>Construction & Trade</h2>
+                                <p>Accelerate business expansion by digitizing estimates and coordination.</p>
+                            </div>
+                        </div>
+                        <div class="solution-card">
+                            <div class="card-icon"><img
+                                    src="https://agentgenius.ai/wp-content/uploads/2025/12/ecommerce-online-retail-shopping-cart-store-icon-scaled.webp"
+                                    alt="Retail"></div>
+                            <div class="card-content">
+                                <h2>Retail & E-Commerce</h2>
+                                <p>Maximize revenue and scale by utilizing AI to predict demand.</p>
+                            </div>
+                        </div>
+                        <div class="solution-card">
+                            <div class="card-icon"><img
+                                    src="https://agentgenius.ai/wp-content/uploads/2025/12/manufacturing-industry-factory-production-plant-icon-scaled.webp"
+                                    alt="Industrial IoT"></div>
+                            <div class="card-content">
+                                <h2>Industrial & IoT</h2>
+                                <p>Maximize production yields by integrating IoT sensor data automation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="section-realestate" class="content-section">
+                    <div class="ag-grid">
+                        <div class="solution-card">
+                            <div class="card-icon"><img
+                                    src="https://agentgenius.ai/wp-content/uploads/2025/12/real-estate-property-agreement-mortgage-handshake-icon-scaled.webp"
+                                    alt="Real Estate"></div>
+                            <div class="card-content">
+                                <h2>Real Estate</h2>
+                                <p>Drive portfolio growth and accelerate deal flow by leveraging AI.</p>
+                            </div>
+                        </div>
+                        <div class="solution-card">
+                            <div class="card-icon"><img
+                                    src="https://agentgenius.ai/wp-content/uploads/2025/12/workforce-development-team-growth-human-resources-icon-scaled.webp"
+                                    alt="Startups"></div>
+                            <div class="card-content">
+                                <h2>Startups & Scaleups</h2>
+                                <p>Accelerate your growth trajectory by deploying scalable AI workflows.</p>
+                            </div>
+                        </div>
+                        <div class="solution-card">
+                            <div class="card-icon"><img
+                                    src="https://agentgenius.ai/wp-content/uploads/2025/12/global-market-economy-international-business-growth-icon-scaled.webp"
+                                    alt="Marketing"></div>
+                            <div class="card-content">
+                                <h2>Marketing & Growth</h2>
+                                <p>Unify data, automate campaigns, and uncover correlations.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('scrollWindow');
+            const sections = document.querySelectorAll('.content-section');
+            const navLinks = document.querySelectorAll('.tab-btn');
+            const cards = document.querySelectorAll('.solution-card');
+            let isManualClick = false;
+
+            function setActiveTab(targetId) {
+                navLinks.forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-target') === targetId));
+                if (window.innerWidth <= 1024) {
+                    sections.forEach(s => s.classList.toggle('active-section', s.id === targetId));
+                    cards.forEach(c => c.classList.remove('active-card'));
+                } else {
+                    sections.forEach(s => s.classList.add('active-section'));
+                }
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('data-target');
+                    setActiveTab(targetId);
+                    isManualClick = true;
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        if (window.innerWidth <= 1024) {
+                            const offset = targetSection.getBoundingClientRect().top + window.pageYOffset - 150;
+                            window.scrollTo({ top: offset, behavior: 'smooth' });
+                        } else {
+                            container.scrollTo({ top: targetSection.offsetTop, behavior: 'smooth' });
+                        }
+                    }
+                    setTimeout(() => { isManualClick = false; }, 800);
+                });
+            });
+
+            const observerOptions = { root: window.innerWidth <= 1024 ? null : container, threshold: 0.5 };
+            const observer = new IntersectionObserver((entries) => {
+                if (isManualClick) return;
+                entries.forEach(entry => { if (entry.isIntersecting) setActiveTab(entry.target.id); });
+            }, observerOptions);
+
+            sections.forEach(s => observer.observe(s));
+
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    if (window.innerWidth > 1024) return;
+                    const isActive = card.classList.contains('active-card');
+                    const activeSection = card.closest('.content-section');
+                    if (activeSection) {
+                        activeSection.querySelectorAll('.solution-card').forEach(c => c.classList.remove('active-card'));
+                    }
+                    if (!isActive) card.classList.add('active-card');
+                });
+            });
+
+            setActiveTab('section-finance');
+        });
+    </script>
+
+</body>
+
+</html>

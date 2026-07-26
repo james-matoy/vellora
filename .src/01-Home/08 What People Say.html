@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonial Section - Grid</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Nunito Sans', sans-serif;
+        }
+
+        body {
+            background-color: #F9F9FC; 
+            color: #333;
+        }
+
+        .testimonial-section {
+            position: relative;
+            width: 100%;
+            padding: 60px 20px;
+            overflow: hidden;
+            background-color: #F9F9FC; 
+        }
+
+        .content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .testimonial-section h2 {
+            font-family: 'Nunito Sans', sans-serif !important;
+            font-size: 36px;   
+            color: #310F5C;    
+            font-weight: 700;  
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .testimonial-section .subtitle {
+            color: #4B5563;        
+            font-size: 18px;       
+            font-weight: 400;      
+            max-width: 500px;
+            margin: 0 auto 50px auto;
+            line-height: 1.5;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            align-items: stretch;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #f3f4f6;
+            border-radius: 16px;
+            padding: 32px 24px 24px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card:hover {
+            box-shadow: 0 15px 50px -10px rgba(160, 32, 240, 0.15);
+        }
+
+        .quote-mark {
+            position: relative;
+            align-self: flex-start;
+            font-size: 48px;
+            color: #F3E8FF;
+            font-family: Georgia, serif;
+            line-height: 1;
+            margin-bottom: -8px;
+            pointer-events: none;
+        }
+
+        .avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50% !important;   
+            object-fit: cover;    
+            border: 2px solid #f9fafb;
+            margin-bottom: 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .client-name {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: #2A1052;
+            letter-spacing: 0.01em;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .client-role {
+            font-size: 0.813rem;
+            color: #6b7280;
+            font-weight: 400;
+            text-align: center;
+            margin-bottom: 4px;
+            line-height: 1.5;
+        }
+
+        .client-role .divider {
+            display: none;
+        }
+
+        .client-role .status {
+            display: block;
+            font-style: italic;
+            color: #9ca3af;
+            margin-top: 2px;
+        }
+
+        .testimonial-text {
+            margin-top: 14px;
+            text-align: left;
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-text p {
+            color: #4B5563;        
+            font-size: 12px; 
+            line-height: 1.6;
+            font-style: italic; 
+        }
+
+        .client-footer {
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .represented-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 12px;
+            border-radius: 999px;
+            background: rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .represented-tag svg {
+            width: 12px;
+            height: 12px;
+            color: #D4AF37;
+            flex-shrink: 0;
+        }
+
+        .represented-tag span {
+            font-size: 9px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #D4AF37;
+            font-weight: 700;
+        }
+
+        @media (max-width: 1024px) {
+            .testimonials-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .testimonial-section { 
+                padding: 40px 15px; 
+            }
+            .testimonial-section h2 { 
+                font-size: 28px; 
+            }
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            .card {
+                padding: 24px 16px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="testimonial-section">
+        <div class="content-container">
+            <h2>What Our Clients Say</h2>
+            <p class="subtitle">Hear from those who have experienced the Vellora difference.</p>
+
+            <div class="testimonials-grid">
+
+                <div class="card">
+                    <div class="quote-mark">&ldquo;</div>
+                    <img class="avatar" src="../../docs/Testimonial Icons - 512x512/Eleanor & David Vance.png" alt="Eleanor & David Vance">
+                    <h4 class="client-name">Eleanor & David Vance</h4>
+                    <p class="client-role">
+                        Relocating Executives
+                        <span class="status">Exclusive Client</span>
+                    </p>
+                    <div class="testimonial-text">
+                        <p>"We were anticipating a highly stressful cross-country move, but the team transformed it into a beautifully seamless experience. Their patience as we refined our aesthetic preferences was extraordinary, and they ultimately found us a sanctuary that exceeded every expectation."</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="quote-mark">&ldquo;</div>
+                    <img class="avatar" src="../../docs/Testimonial Icons - 512x512/Marcus Thorne.png" alt="Marcus Thorne">
+                    <h4 class="client-name">Marcus Thorne</h4>
+                    <p class="client-role">
+                        Real Estate Investor
+                        <span class="status">Exclusive Client</span>
+                    </p>
+                    <div class="testimonial-text">
+                        <p>"In a fast-paced market, having a dedicated concierge who truly listens makes all the difference. They never rushed a decision and provided insightful, reassuring guidance at every turn. The transaction was handled with absolute discretion and ease."</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="quote-mark">&ldquo;</div>
+                    <img class="avatar" src="../../docs/Testimonial Icons - 512x512/Sophia Lin.png" alt="Sophia Lin">
+                    <h4 class="client-name">Sophia Lin</h4>
+                    <p class="client-role">
+                        First-Time Homebuyer
+                        <span class="status">Exclusive Client</span>
+                    </p>
+                    <div class="testimonial-text">
+                        <p>"As a first-time buyer, I was initially overwhelmed by the complexities of the luxury market. They broke down every detail, guided me with unbelievable patience, and handled all the heavy lifting behind the scenes. I am now enjoying my beautiful new home entirely stress-free."</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="quote-mark">&ldquo;</div>
+                    <img class="avatar" src="../../docs/Testimonial Icons - 512x512/Julian & Claire Beaumont.png" alt="Julian & Claire Beaumont">
+                    <h4 class="client-name">Julian & Claire Beaumont</h4>
+                    <p class="client-role">
+                        Luxury Estate Owners
+                        <span class="status">Exclusive Client</span>
+                    </p>
+                    <div class="testimonial-text">
+                        <p>"The level of bespoke service we received was simply unmatched. They took the time to deeply understand the specific architectural details we desired and curated a brilliant portfolio of properties just for us. The final closing was a masterclass in premium service."</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="quote-mark">&ldquo;</div>
+                    <img class="avatar" src="../../docs/Testimonial Icons - 512x512/Harrison Reed.png" alt="Harrison Reed">
+                    <h4 class="client-name">Harrison Reed</h4>
+                    <p class="client-role">
+                        Urban Condominium Resident
+                        <span class="status">Exclusive Client</span>
+                    </p>
+                    <div class="testimonial-text">
+                        <p>"I was looking for a very specific downtown living experience, and they delivered perfectly. Their ability to anticipate my needs and their consistent patience made me feel completely valued as a client. Everything was orchestrated flawlessly."</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

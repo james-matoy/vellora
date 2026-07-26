@@ -1,0 +1,315 @@
+<style>
+    .h-section {
+        position: relative;
+        height: 100vh;
+        width: 100%;
+        overflow: hidden;
+        font-family: 'Nunito Sans', sans-serif;
+    }
+    .h-bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .h-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.55) 100%);
+    }
+    .h-gradient-top {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0,0,0,0.6), transparent, rgba(0,0,0,0.3));
+    }
+    .h-gradient-side {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to right, rgba(0,0,0,0.3), transparent, rgba(0,0,0,0.3));
+    }
+    .h-content {
+        position: relative;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    @media (min-width: 640px) {
+        .h-content { padding-left: 1.5rem; padding-right: 1.5rem; }
+    }
+    @media (min-width: 1024px) {
+        .h-content { padding-left: 2rem; padding-right: 2rem; }
+    }
+    .h-inner {
+        max-width: 56rem;
+        width: 100%;
+        text-align: center;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .h-eyebrow {
+        color: #fff;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        margin: 0 0 1rem;
+        filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+    }
+    @media (min-width: 640px) {
+        .h-eyebrow { font-size: 0.875rem; margin-bottom: 1.25rem; }
+    }
+    .h-headline {
+        color: #fff;
+        font-size: 2.25rem;
+        font-weight: 800;
+        line-height: 1.05;
+        letter-spacing: -0.025em;
+        margin: 0 0 1.25rem;
+        filter: drop-shadow(0 16px 16px rgba(0,0,0,0.15));
+    }
+    @media (min-width: 640px) {
+        .h-headline { font-size: 3rem; margin-bottom: 1.5rem; }
+    }
+    @media (min-width: 768px) {
+        .h-headline { font-size: 3.75rem; }
+    }
+    @media (min-width: 1024px) {
+        .h-headline { font-size: 4.5rem; }
+    }
+    .h-headline-span {
+        color: #fff;
+        font-weight: 700;
+    }
+    .h-subhead {
+        color: #fff;
+        font-size: 1rem;
+        max-width: 42rem;
+        margin: 0 auto 2rem;
+        line-height: 1.625;
+        filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+    }
+    @media (min-width: 640px) {
+        .h-subhead { font-size: 1.125rem; margin-bottom: 2.5rem; }
+    }
+    @media (min-width: 768px) {
+        .h-subhead { font-size: 1.25rem; }
+    }
+    .h-chatbox {
+        border-radius: 9999px;
+        padding: 0.75rem 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        max-width: 36rem;
+        margin: 0 auto;
+        width: 100%;
+        background: rgba(255,255,255,0.06);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.12);
+        box-sizing: border-box;
+        transition: all 0.3s ease;
+    }
+    @media (min-width: 640px) {
+        .h-chatbox { padding: 1rem 1.5rem; }
+    }
+    .h-chat-icon {
+        width: 1.25rem;
+        height: 1.25rem;
+        flex-shrink: 0;
+        color: rgba(255,255,255,0.4);
+        display: block;
+    }
+    @media (min-width: 640px) {
+        .h-chat-icon { width: 1.5rem; height: 1.5rem; }
+    }
+    .h-input {
+        flex: 1;
+        background: transparent;
+        color: #fff;
+        font-size: 0.875rem;
+        border: none;
+        outline: none;
+        padding: 0;
+        margin: 0;
+        min-width: 0;
+        font-family: inherit;
+    }
+    @media (min-width: 640px) {
+        .h-input { font-size: 1rem; }
+    }
+    .h-input::placeholder { color: rgba(255,255,255,0.5); }
+    .h-input:focus { outline: none; box-shadow: none; }
+    .h-btn-group {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex-shrink: 0;
+    }
+    @media (min-width: 640px) {
+        .h-btn-group { gap: 0.75rem; }
+    }
+    .h-btn {
+        padding: 0.375rem;
+        border-radius: 9999px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    @media (min-width: 640px) {
+        .h-btn { padding: 0.5rem; }
+    }
+    .h-btn:hover { background: rgba(255,255,255,0.1); }
+    .h-btn-secondary {
+        padding: 0.375rem;
+        border-radius: 9999px;
+        background: rgba(255,255,255,0.1);
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    @media (min-width: 640px) {
+        .h-btn-secondary { padding: 0.5rem; }
+    }
+    .h-btn-secondary:hover { background: rgba(255,255,255,0.2); }
+    .h-icon {
+        width: 1.25rem;
+        height: 1.25rem;
+        color: rgba(255,255,255,0.5);
+        transition: color 0.2s ease;
+        display: block;
+    }
+    @media (min-width: 640px) {
+        .h-icon { width: 22px; height: 22px; }
+    }
+    .h-btn:hover .h-icon { color: rgba(255,255,255,0.9); }
+    .h-icon-send {
+        width: 1.25rem;
+        height: 1.25rem;
+        color: rgba(255,255,255,0.7);
+        transition: color 0.2s ease;
+        display: block;
+    }
+    @media (min-width: 640px) {
+        .h-icon-send { width: 22px; height: 22px; }
+    }
+    .h-btn-secondary:hover .h-icon-send { color: #fff; }
+    .h-badges {
+        position: absolute;
+        bottom: 2rem;
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0 1rem;
+    }
+    @media (min-width: 640px) {
+        .h-badges { bottom: 2.5rem; gap: 1rem; }
+    }
+    .h-badge-label {
+        color: rgba(255,255,255,0.4);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        margin: 0;
+    }
+    @media (min-width: 640px) {
+        .h-badge-label { font-size: 0.75rem; }
+    }
+    .h-badge-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        column-gap: 1.5rem;
+        row-gap: 0.5rem;
+    }
+    @media (min-width: 640px) {
+        .h-badge-row { column-gap: 2.5rem; }
+    }
+    .h-badge-item {
+        color: rgba(255,255,255,0.7);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.025em;
+        cursor: default;
+        padding-bottom: 0.125rem;
+        border-bottom: 1px solid transparent;
+        transition: color 0.3s ease, border-color 0.3s ease;
+    }
+    @media (min-width: 640px) {
+        .h-badge-item { font-size: 0.875rem; }
+    }
+    .h-badge-item:hover {
+        color: rgba(255,255,255,0.95);
+        border-color: rgba(233,213,255,0.3);
+    }
+</style>
+
+<div class="h-section">
+    <div class="h-bg" style="background-image: url('../../docs/luxury-real-estate-hero-background-modern-penthouse-city-skyline-16x9.webp');"></div>
+    <div class="h-overlay"></div>
+    <div class="h-gradient-top"></div>
+    <div class="h-gradient-side"></div>
+    <div class="h-content">
+        <div class="h-inner">
+            <p class="h-eyebrow">DISCOVER YOUR SANCTUARY</p>
+            <h1 class="h-headline">
+                Welcome Home.<br>
+                <span class="h-headline-span">Elevate Your Lifestyle.</span>
+            </h1>
+            <p class="h-subhead">Premium real estate experiences tailored to your unique vision. We guide you seamlessly from inspiration to acquisition.</p>
+            <div class="h-chatbox">
+                <svg class="h-chat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 6v6l4 2"/>
+                </svg>
+                <input type="text" class="h-input" placeholder="Describe your ideal sanctuary..." aria-label="Describe your ideal sanctuary">
+                <div class="h-btn-group">
+                    <button class="h-btn" aria-label="Voice input">
+                        <svg class="h-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" fill="currentColor" fill-opacity="0.15"/>
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2" stroke="currentColor"/>
+                            <line x1="12" y1="19" x2="12" y2="23" stroke="currentColor"/>
+                            <line x1="8" y1="23" x2="16" y2="23" stroke="currentColor"/>
+                        </svg>
+                    </button>
+                    <button class="h-btn-secondary" aria-label="Send message">
+                        <svg class="h-icon-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 2L11 13" stroke="currentColor"/>
+                            <path d="M22 2L15 22L11 13L2 9L22 2Z" fill="currentColor" fill-opacity="0.15" stroke="currentColor"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="h-badges">
+        <p class="h-badge-label">FEATURED IN</p>
+        <div class="h-badge-row">
+            <span class="h-badge-item">Luxury Portfolio International</span>
+            <span class="h-badge-item">Leading Real Estate Companies of the World</span>
+            <span class="h-badge-item">Local Premium Publications</span>
+        </div>
+    </div>
+</div>

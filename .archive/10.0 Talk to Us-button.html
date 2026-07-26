@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talk To Us - Desktop Curve Fit</title>
+    <style>
+        .dsa-wrapper {
+            font-family: 'Nunito Sans', sans-serif;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Button Hover */
+        .talk-btn-force:hover {
+            background-color: #F3E5F5 !important;
+        }
+
+        /* --- ICON ANIMATIONS --- */
+        .talk-btn-force:hover .button-arrow-icon circle {
+            fill: #A020F0;
+            stroke: #A020F0;
+            transition: all 0.4s ease-in-out;
+        }
+
+        .talk-btn-force:hover .button-arrow-icon path {
+            stroke: #FFFFFF;
+            transition: all 0.4s ease-in-out;
+        }
+
+        /* --- PIXEL ROBOT ANIMATIONS --- */
+        @keyframes pixel-talk {
+
+            0%,
+            100% {
+                height: 2px;
+                transform: translateY(0px);
+            }
+
+            33% {
+                height: 6px;
+                transform: translateY(-2px);
+            }
+
+            66% {
+                height: 4px;
+                transform: translateY(-1px);
+            }
+        }
+
+        @keyframes pixel-blink {
+
+            0%,
+            94%,
+            100% {
+                height: 3px;
+            }
+
+            97% {
+                height: 0px;
+            }
+        }
+
+        @keyframes pixel-float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-2px);
+            }
+        }
+
+        /* --- MOBILE REFINEMENT (UNTOUCHED) --- */
+        @media screen and (max-width: 600px) {
+            .talk-btn-force {
+                display: inline-flex !important;
+                width: auto !important;
+                max-width: 98vw !important;
+                white-space: nowrap !important;
+                padding-left: 20px !important;
+                padding-right: 12px !important;
+                gap: 15px !important;
+                font-size: 24px !important;
+                box-sizing: border-box !important;
+                overflow: visible !important;
+            }
+
+            .pixel-robot-container,
+            .button-arrow-icon {
+                flex-shrink: 0 !important;
+            }
+
+            .button-arrow-icon {
+                margin-left: 0px !important;
+            }
+
+            .button-arrow-icon svg {
+                width: 60px !important;
+                height: 60px !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="dsa-wrapper">
+        <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1FpsT1ABes0yas-CoPQBy9RZ4C81HKLOq1iX5UGWtlb-U90di83Ekx2PLYQlR7fdRJsYM8dvq8"
+            target="_blank" class="talk-btn-force" style="
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px; 
+            background-color: #FFFFFF; 
+            color: #5B2C98; 
+            border: 1px solid #5B2C98; 
+            border-radius: 60px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            /* DESKTOP FIX: padding-right reduced to 6px to move circle into the curve */
+            padding-right: 6px; 
+            padding-left: 25px;
+            font-family: inherit;
+            font-size: 24px; 
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none; 
+            box-sizing: border-box;
+        ">
+            <div class="pixel-robot-container"
+                style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    style="shape-rendering: crispEdges; animation: pixel-float 2s ease-in-out infinite;">
+                    <rect x="11" y="1" width="2" height="3" fill="#5B2C98" />
+                    <path d="M4 5h16v14h-16z" fill="#FFFFFF" stroke="#5B2C98" stroke-width="2" />
+                    <rect x="7" y="9" width="3" height="3" fill="#5B2C98" style="animation: pixel-blink 4s infinite;" />
+                    <rect x="14" y="9" width="3" height="3" fill="#5B2C98"
+                        style="animation: pixel-blink 4s infinite;" />
+                    <rect x="9" y="14" width="6" height="2" fill="#5B2C98"
+                        style="animation: pixel-talk 0.5s steps(3) infinite;" />
+                </svg>
+            </div>
+
+            <span>Talk to Us</span>
+
+            <div class="button-arrow-icon"
+                style="display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <svg width="60" height="60" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="13" cy="13" r="12.5" stroke="#A020F0" stroke-width="0.5" fill="none" />
+                    <path d="M9 13H17M13 9L17 13L13 17" stroke="#A020F0" stroke-width="1" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+        </a>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,161 @@
+<style>
+    /* 1. FONT IMPORT */
+    @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+    /* Global Overwrite */
+    html,
+    body {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        margin: 0;
+    }
+
+    .promise-section-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 60px !important;
+        background-color: #ffffff;
+    }
+
+    .promise-card {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        padding: 60px;
+        border-radius: 28px;
+
+        background: #ffffff;
+        border: 1px solid transparent;
+        box-shadow: none;
+
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        overflow: hidden;
+        cursor: pointer;
+        z-index: 1;
+        transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        box-sizing: border-box;
+        font-family: 'Nunito Sans', sans-serif;
+    }
+
+    /* Hover state */
+    .promise-card:hover {
+        background: #ffffff;
+        border-color: #e0e0e0;
+        box-shadow: 0 10px 40px #310F5C26;
+    }
+
+    /* 1. INTERNAL SPOTLIGHT */
+    .promise-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background: radial-gradient(800px circle at var(--mouse-x, -100%) var(--mouse-y, -100%),
+                rgba(91, 44, 152, 0.12),
+                transparent 50%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+    }
+
+    /* 2. EDGE GLOW */
+    .promise-card::after {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: 28px;
+        padding: 1.8px;
+        z-index: 2;
+        background: radial-gradient(350px circle at var(--mouse-x, -100%) var(--mouse-y, -100%),
+                #5B2C98 0%,
+                rgba(91, 44, 152, 0.8) 15%,
+                rgba(91, 44, 152, 0.2) 40%,
+                transparent 60%);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+    }
+
+    .promise-card:hover::before,
+    .promise-card:hover::after {
+        opacity: 1;
+    }
+
+    /* Typography */
+    .promise-label {
+        font-size: 35px;
+        font-weight: 800;
+        letter-spacing: -0.05em;
+        color: #5b2c98;
+        line-height: 1.1;
+        text-transform: uppercase;
+        position: relative;
+        z-index: 3;
+        margin: 0;
+    }
+
+    .promise-statement {
+        font-size: 55px;
+        font-weight: 900;
+        color: #5b2c98;
+        line-height: 1.1;
+        position: relative;
+        z-index: 3;
+        margin: 0;
+    }
+
+    @media (max-width: 768px) {
+        .promise-label {
+            font-size: 24px;
+        }
+
+        .promise-statement {
+            font-size: 40px;
+        }
+
+        .promise-card {
+            padding: 40px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .promise-section-wrapper {
+            padding: 40px 20px !important;
+        }
+
+        .promise-label {
+            font-size: 20px;
+        }
+
+        .promise-statement {
+            font-size: 32px;
+        }
+    }
+</style>
+
+<div class="promise-section-wrapper">
+    <div class="promise-card">
+        <div class="promise-label">AgentGenius Promise</div>
+        <div class="promise-statement">We design and deploy AI systems your team actually uses — and your business can
+            trust.</div>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('mousemove', (e) => {
+        const cards = document.querySelectorAll('.promise-card');
+        cards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty("--mouse-x", `${x}px`);
+            card.style.setProperty("--mouse-y", `${y}px`);
+        });
+    });
+</script>

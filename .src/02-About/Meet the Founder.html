@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Reset and Box Sizing */
+        .founder-section-wrapper * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Main Wrapper - Nunito Sans */
+        .founder-section-wrapper {
+            font-family: 'Nunito Sans', sans-serif;
+            padding: 60px 20px;
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .founder-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .founder-text {
+            flex: 1;
+            min-width: 320px;
+            text-align: left;
+        }
+
+        /* ARIESTIDES ROSALES - 24px */
+        .founder-text h2 {
+            font-family: 'Nunito Sans', sans-serif;
+            color: #3b1b5d;
+            font-size: 24px;
+            font-weight: 800;
+            margin-top: 25px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        /* MEET THE FOUNDER - 20px */
+        .founder-text .subtitle {
+            font-family: 'Nunito Sans', sans-serif;
+            color: #6a4a8f;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        /* Paragraphs - 18px */
+        .founder-text p {
+            font-family: 'Nunito Sans', sans-serif;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        .founder-card-column {
+            flex: 1.2;
+            min-width: 320px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* PROFILE CARD STYLE */
+        .profile-card {
+            position: relative;
+            background: #fff;
+            border-radius: 28px;
+            width: 100%;
+            max-width: 500px;
+            overflow: hidden;
+            text-align: left;
+            border: 1px solid transparent;
+            box-shadow: none;
+            cursor: pointer;
+            z-index: 1;
+            transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .profile-card:hover {
+            border-color: #e0e0e0;
+            box-shadow: 0 10px 30px #310F5C26;
+        }
+
+        .profile-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background: radial-gradient(600px circle at var(--mouse-x, -100%) var(--mouse-y, -100%),
+                    rgba(91, 44, 152, 0.12),
+                    transparent 50%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .profile-card::after {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            border-radius: 28px;
+            padding: 1.8px;
+            z-index: 2;
+            background: radial-gradient(250px circle at var(--mouse-x, -100%) var(--mouse-y, -100%),
+                    #5B2C98 0%,
+                    rgba(91, 44, 152, 0.8) 15%,
+                    rgba(91, 44, 152, 0.2) 40%,
+                    transparent 60%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .profile-card:hover::before,
+        .profile-card:hover::after {
+            opacity: 1;
+        }
+
+        .profile-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            background-color: transparent;
+            position: relative;
+            z-index: 1;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+
+        .profile-card:hover img {
+            filter: grayscale(0%);
+        }
+
+        .card-inner {
+            padding: 20px 30px;
+            position: relative;
+            z-index: 3;
+        }
+
+        /* Quote Styling */
+        .founder-text blockquote {
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 0;
+            line-height: 1.4;
+            font-style: italic;
+            border-left: 4px solid #6a4a8f;
+            padding-left: 15px;
+        }
+
+        .card-inner h4 {
+            font-family: 'Nunito Sans', sans-serif;
+            color: #3b1b5d;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 3px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .profile-card:hover .card-inner h4 {
+            opacity: 1;
+        }
+
+        /* Role Styling */
+        .founder-text .role {
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 16px;
+            color: #4B5563;
+            margin-bottom: 15px;
+            display: block;
+            font-weight: 700;
+        }
+
+        .social-links {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .social-links a {
+            color: #3b1b5d;
+            font-size: 18px;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            display: flex;
+            align-items: center;
+            background: transparent !important;
+            border: none !important;
+            padding: 0 !important;
+        }
+
+        /* Task: Maintain adjusted space for X icon alignment */
+        .social-links a.elementor-repeater-item-5ddf11a {
+            margin-left: -12px;
+        }
+
+        .social-links svg {
+            width: 18px;
+            height: 18px;
+            fill: #3b1b5d;
+            background: transparent !important;
+        }
+
+        .social-links a:hover {
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .founder-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .founder-text,
+            .founder-card-column {
+                text-align: center;
+                min-width: 100%;
+            }
+
+            .founder-text blockquote {
+                font-size: 18px;
+                border-left: none;
+                padding-left: 0;
+                margin-bottom: 20px;
+            }
+
+            .founder-text h2 {
+                font-size: 22px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+
+            .founder-text .subtitle {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="founder-section-wrapper">
+        <div class="founder-container">
+
+            <div class="founder-text">
+                <span class="subtitle">MEET THE FOUNDER</span>
+
+                <blockquote>
+                    "The future of work isn't about more tools—it's about building intelligence that works for you."
+                </blockquote>
+
+                <h2>ARIESTIDES ROSALES</h2>
+
+                <span class="role">Founder & AI Strategist at AgentGenius.ai</span>
+
+                <p>
+                    After nearly a decade at TD pioneering automation frameworks across global infrastructure teams,
+                    Ariestides Rosales founded AgentGenius.ai with a clear mission: help businesses build intelligent
+                    systems that operate with precision and scale.
+                </p>
+
+                <p>
+                    With 20+ years leading technology transformations across banking, finance, and insurance,
+                    he specializes in turning manual, high-friction processes into automated workflows
+                    that deliver real business value.
+                </p>
+
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/company/agentgenius-ai/" target="_blank" aria-label="LinkedIn"><i
+                            class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/agentgenius.ai/" target="_blank" aria-label="Instagram"><i
+                            class="fab fa-instagram"></i></a>
+                    <a class="elementor-icon elementor-social-icon elementor-social-icon- elementor-repeater-item-5ddf11a"
+                        href="https://x.com/AgentGeniusAI" target="_blank">
+                        <span class="elementor-screen-only"></span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M10.4883 14.651L15.25 21H22.25L14.3917 10.5223L20.9308 3H18.2808L13.1643 8.88578L8.75 3H1.75L9.26086 13.0145L2.31915 21H4.96917L10.4883 14.651ZM16.25 19L5.75 5H7.75L18.25 19H16.25Z">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="founder-card-column">
+                <div class="profile-card">
+                    <img
+                        src="https://agentgenius.ai/wp-content/uploads/2025/12/ariestides-rosales-founder-agentgenius-ai.webp">
+                    <div class="card-inner">
+                        <h4>ARIESTIDES ROSALES</h4>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        window.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.profile-card');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty("--mouse-x", `${x}px`);
+                card.style.setProperty("--mouse-y", `${y}px`);
+            });
+        });
+    </script>
+
+</body>
+
+</html>
