@@ -1,0 +1,125 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&display=swap');
+
+    .sb-section {
+        font-family: 'Nunito Sans', sans-serif;
+        background-color: #310F5C;
+        padding: 2.5rem 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .sb-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        box-sizing: border-box;
+    }
+
+    .sb-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        align-items: center;
+    }
+
+    .sb-item {
+        text-align: center;
+        padding: 0 1rem;
+        position: relative;
+    }
+
+    .sb-item::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1px;
+        height: 3rem;
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    .sb-item:last-child::after {
+        display: none;
+    }
+
+    .sb-number {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #FFFFFF;
+        line-height: 1.1;
+        margin: 0 0 0.25rem;
+        letter-spacing: -0.02em;
+    }
+
+    .sb-label {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.8);
+        margin: 0;
+        line-height: 1.4;
+    }
+
+    .sb-accent {
+        color: #E9D5FF;
+    }
+
+    @media (max-width: 900px) {
+        .sb-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem 0;
+        }
+        .sb-item:nth-child(2)::after {
+            display: none;
+        }
+        .sb-item:nth-child(4)::after {
+            display: none;
+        }
+        .sb-number {
+            font-size: 2rem;
+        }
+        .sb-label {
+            font-size: 0.8rem;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .sb-grid {
+            grid-template-columns: 1fr;
+            gap: 1.25rem 0;
+        }
+        .sb-item::after {
+            display: none;
+        }
+        .sb-number {
+            font-size: 1.75rem;
+        }
+        .sb-section {
+            padding: 1.5rem 0;
+        }
+    }
+</style>
+
+<div class="sb-section">
+    <div class="sb-container">
+        <div class="sb-grid">
+            <div class="sb-item">
+                <p class="sb-number">$50M+</p>
+                <p class="sb-label">In Closed Transactions</p>
+            </div>
+            <div class="sb-item">
+                <p class="sb-number">200+</p>
+                <p class="sb-label">Families Relocated</p>
+            </div>
+            <div class="sb-item">
+                <p class="sb-number"><span class="sb-accent">4.9</span>★</p>
+                <p class="sb-label">Average Client Rating</p>
+            </div>
+            <div class="sb-item">
+                <p class="sb-number">15+</p>
+                <p class="sb-label">Years of Excellence</p>
+            </div>
+        </div>
+    </div>
+</div>

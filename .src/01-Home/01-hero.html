@@ -264,10 +264,44 @@
         color: rgba(255,255,255,0.95);
         border-color: rgba(233,213,255,0.3);
     }
+
+    .h-cta {
+        margin-top: 1.5rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: #FFFFFF;
+        color: #6B2A8B;
+        padding: 12px 28px;
+        border-radius: 6px;
+        font-family: 'Nunito Sans', sans-serif;
+        font-size: 0.875rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        text-decoration: none;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    }
+
+    .h-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    }
+
+    .h-cta svg {
+        width: 18px;
+        height: 18px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
 </style>
 
 <div class="h-section">
-    <div class="h-bg" style="background-image: url('../../docs/Hero Background - 16x9/luxury-real-estate-hero-background-modern-penthouse-city-skyline-16x9.webp');"></div>
+    <div class="h-bg" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1920&q=80');"></div>
     <div class="h-overlay"></div>
     <div class="h-gradient-top"></div>
     <div class="h-gradient-side"></div>
@@ -302,6 +336,10 @@
                     </button>
                 </div>
             </div>
+            <a href="#" class="h-cta">
+                Book a Private Consultation
+                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
         </div>
     </div>
     <div class="h-badges">

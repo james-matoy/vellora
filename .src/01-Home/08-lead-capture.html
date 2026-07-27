@@ -1,0 +1,211 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&display=swap');
+
+    .lc-section {
+        font-family: 'Nunito Sans', sans-serif;
+        background-color: #FFFFFF;
+        padding: 4rem 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .lc-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        box-sizing: border-box;
+    }
+
+    .lc-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .lc-header h2 {
+        font-family: 'Nunito Sans', sans-serif !important;
+        font-size: 36px;
+        color: #310F5C;
+        font-weight: 700;
+        margin: 0 0 0.75rem;
+        letter-spacing: -1px;
+    }
+
+    .lc-header p {
+        color: #4B5563;
+        font-size: 18px;
+        font-weight: 400;
+        max-width: 500px;
+        margin: 0 auto;
+        line-height: 1.5;
+    }
+
+    .lc-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: start;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .lc-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .lc-input {
+        font-family: 'Nunito Sans', sans-serif;
+        width: 100%;
+        padding: 0.875rem 1rem;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        color: #310F5C;
+        background: #FFFFFF;
+        box-sizing: border-box;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        outline: none;
+    }
+
+    .lc-input:focus {
+        border-color: #A020F0;
+        box-shadow: 0 0 0 3px rgba(160, 32, 240, 0.1);
+    }
+
+    .lc-input::placeholder {
+        color: #9ca3af;
+    }
+
+    select.lc-input {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        cursor: pointer;
+    }
+
+    .lc-submit {
+        font-family: 'Nunito Sans', sans-serif;
+        background: #A020F0;
+        color: #FFFFFF;
+        border: none;
+        border-radius: 8px;
+        padding: 0.875rem 2rem;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background-color 0.2s ease, transform 0.2s ease;
+        width: 100%;
+    }
+
+    .lc-submit:hover {
+        background: #7B1FA2;
+        transform: translateY(-1px);
+    }
+
+    .lc-submit:active {
+        transform: translateY(0);
+    }
+
+    .lc-right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        padding-top: 0.5rem;
+    }
+
+    .lc-right p {
+        color: #4B5563;
+        font-size: 1rem;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    .talk-btn-force:hover { background-color: #F3E5F5 !important; }
+    .talk-btn-force:hover .button-arrow-icon circle { fill: #A020F0; stroke: #A020F0; transition: all 0.4s ease-in-out; }
+    .talk-btn-force:hover .button-arrow-icon path { stroke: #FFFFFF; transition: all 0.4s ease-in-out; }
+    @keyframes pixel-talk { 0%,100%{height:2px;transform:translateY(0px);} 33%{height:6px;transform:translateY(-2px);} 66%{height:4px;transform:translateY(-1px);} }
+    @keyframes pixel-blink { 0%,94%,100%{height:3px;} 97%{height:0px;} }
+    @keyframes pixel-float { 0%,100%{transform:translateY(0px);} 50%{transform:translateY(-2px);} }
+
+    @media (max-width: 768px) {
+        .lc-section {
+            padding: 2rem 0;
+        }
+        .lc-header h2 {
+            font-size: 28px;
+        }
+        .lc-header p {
+            font-size: 16px;
+        }
+        .lc-grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        .talk-btn-force {
+            display: inline-flex !important;
+            width: auto !important;
+            max-width: 98vw !important;
+            white-space: nowrap !important;
+            padding-left: 20px !important;
+            padding-right: 12px !important;
+            gap: 15px !important;
+            font-size: 24px !important;
+            box-sizing: border-box !important;
+            overflow: visible !important;
+        }
+        .talk-btn-force .pixel-robot-container,
+        .talk-btn-force .button-arrow-icon {
+            flex-shrink: 0 !important;
+        }
+        .talk-btn-force .button-arrow-icon {
+            margin-left: 0px !important;
+        }
+        .talk-btn-force .button-arrow-icon svg {
+            width: 60px !important;
+            height: 60px !important;
+        }
+    }
+</style>
+
+<div class="lc-section">
+    <div class="lc-container">
+        <div class="lc-header">
+            <h2>Start Your Journey</h2>
+            <p>Tell us what you're looking for and we'll find the perfect match.</p>
+        </div>
+        <div class="lc-grid">
+            <form class="lc-form" action="#" method="post">
+                <input class="lc-input" type="text" placeholder="Full Name" name="name" required>
+                <input class="lc-input" type="email" placeholder="Email Address" name="email" required>
+                <input class="lc-input" type="tel" placeholder="Phone Number" name="phone">
+                <select class="lc-input" name="interest">
+                    <option value="" disabled selected>I'm looking to...</option>
+                    <option value="buy">Buy a property</option>
+                    <option value="sell">Sell my property</option>
+                    <option value="invest">Invest in real estate</option>
+                    <option value="relocate">Relocate to a new area</option>
+                    <option value="other">Just exploring</option>
+                </select>
+                <button class="lc-submit" type="submit">Send Inquiry</button>
+            </form>
+            <div class="lc-right">
+                <p>Prefer a personal conversation? Schedule a private consultation with our team. We'll take the time to understand your vision and craft a bespoke plan.</p>
+                <button class="talk-btn-force" type="button" style="display: inline-flex; align-items: center; justify-content: center; gap: 12px; background-color: #FFFFFF; color: #5B2C98; border: 1px solid #5B2C98; border-radius: 60px; padding-top: 10px; padding-bottom: 10px; padding-right: 6px; padding-left: 25px; font-family: inherit; font-size: 24px; font-weight: bold; cursor: pointer; box-sizing: border-box;">
+                    <div class="pixel-robot-container" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="shape-rendering: crispEdges; animation: pixel-float 2s ease-in-out infinite;"><rect x="11" y="1" width="2" height="3" fill="#5B2C98"/><path d="M4 5h16v14h-16z" fill="#FFFFFF" stroke="#5B2C98" stroke-width="2"/><rect x="7" y="9" width="3" height="3" fill="#5B2C98" style="animation: pixel-blink 4s infinite;"/><rect x="14" y="9" width="3" height="3" fill="#5B2C98" style="animation: pixel-blink 4s infinite;"/><rect x="9" y="14" width="6" height="2" fill="#5B2C98" style="animation: pixel-talk 0.5s steps(3) infinite;"/></svg>
+                    </div>
+                    <span>Talk to Us</span>
+                    <div class="button-arrow-icon" style="display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <svg width="60" height="60" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="13" cy="13" r="12.5" stroke="#A020F0" stroke-width="0.5" fill="none"/><path d="M9 13H17M13 9L17 13L13 17" stroke="#A020F0" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

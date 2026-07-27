@@ -3,23 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Real Estate Concierge</title>
+    <title>Premium Real Estate Concierge | Velora</title>
+    <meta name="description" content="Premium real estate experiences tailored to your unique vision. Explore luxury listings, book private consultations, and find your ideal sanctuary.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Premium Real Estate Concierge | Velora">
+    <meta property="og:description" content="Premium real estate experiences tailored to your unique vision. Explore luxury listings, book private consultations, and find your ideal sanctuary.">
+    <meta property="og:image" content="images/Hero Background - 16x9/luxury-real-estate-hero-background-modern-penthouse-city-skyline-16x9.webp">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&display=swap');
         body { margin: 0; padding: 0; font-family: 'Nunito Sans', sans-serif; }
+        [id]:not(.ag-header) { scroll-margin-top: 80px; }
+
+        .ag-header { font-family: 'Nunito Sans', sans-serif; position: fixed; top: 0; left: 0; right: 0; width: 100%; z-index: 99999; background: transparent; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .ag-header.scrolled { background: rgba(49, 15, 92, 0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+        .ag-container { display: flex; align-items: center; justify-content: space-between; padding: 0 20px; max-width: 1300px; margin: 0 auto; height: 72px; }
+        .ag-logo { font-size: 1.5rem; font-weight: 800; color: #fff; text-decoration: none; letter-spacing: -0.02em; flex-shrink: 0; line-height: 1; }
+        .ag-nav { position: absolute; top: 100%; left: 0; width: 100%; background: rgba(49, 15, 92, 0.97); backdrop-filter: blur(15px); max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+        .ag-nav.active { max-height: 80vh; }
+        .ag-nav ul { display: flex; flex-direction: column; list-style: none; gap: 0; margin: 0; padding: 20px 0; text-align: center; }
+        .ag-nav ul li a { color: #FFFFFF; text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 15px; display: block; padding: 12px; transition: opacity 0.2s ease; }
+        .ag-nav ul li a:hover { opacity: 0.75; }
+        .ag-actions { display: flex; align-items: center; gap: 12px; }
+        .ag-phone { display: none; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.8125rem; font-weight: 600; align-items: center; gap: 6px; white-space: nowrap; transition: color 0.2s ease; }
+        .ag-phone:hover { color: #fff; }
+        .ag-phone svg { width: 14px; height: 14px; flex-shrink: 0; }
+        .ag-btn { background: #FFFFFF; color: #6B2A8B; padding: 8px 18px; border-radius: 6px; font-weight: 800; font-size: 11px; text-transform: uppercase; text-decoration: none; white-space: nowrap; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .ag-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .ag-menu-toggle { cursor: pointer; width: 25px; height: 20px; display: flex; flex-direction: column; justify-content: space-between; position: relative; z-index: 100000; -webkit-tap-highlight-color: transparent; }
+        .ag-menu-toggle span { width: 100%; height: 2px; background-color: #FFFFFF; display: block; transition: all 0.3s ease-in-out; transform-origin: center; }
+        .ag-menu-toggle.active span:nth-child(2) { opacity: 0; transform: translateX(10px); }
+        .ag-menu-toggle.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        .ag-menu-toggle.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+        @media (min-width: 1101px) { .ag-menu-toggle { display: none; } .ag-nav { position: static; width: auto; background: transparent; backdrop-filter: none; max-height: none; overflow: visible; } .ag-nav ul { flex-direction: row; gap: 28px; padding: 0; } .ag-nav ul li a { padding: 0; font-size: 13px; } .ag-phone { display: inline-flex; } }
     </style>
 </head>
 <body>
+    <header class="ag-header" id="ag-header">
+        <div class="ag-container">
+            <a href="#hero-section" class="ag-logo" aria-label="Vellora Home">Vellora</a>
+            <nav class="ag-nav" id="ag-nav" aria-label="Main Navigation">
+                <ul>
+                    <li><a href="#featured-listings">Listings</a></li>
+                    <li><a href="#five-capabilities">Services</a></li>
+                    <li><a href="#testimonials">About</a></li>
+                    <li><a href="#how-it-works">Process</a></li>
+                    <li><a href="#lead-capture">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="ag-actions">
+                <a href="tel:+15551234567" class="ag-phone" aria-label="Call us">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    (555) 123-4567
+                </a>
+                <a href="#lead-capture" class="ag-btn">Book a Consultation</a>
+                <div class="ag-menu-toggle" id="ag-menu-toggle" aria-label="Toggle Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
     <div id="hero-section"></div>
+    <div id="stats-bar"></div>
     <div id="five-capabilities"></div>
     <div id="nine-industries"></div>
     <div id="how-it-works"></div>
-    <div id="responsible-ai"></div>
-    <div id="faq"></div>
+    <div id="featured-listings"></div>
     <div id="testimonials"></div>
-    <div id="talk-to-us"></div>
+    <div id="lead-capture"></div>
+    <div id="faq"></div>
+    <div id="responsible-ai"></div>
     <div id="footer-section"></div>
 
     <script src="../00-Global/component-loader.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('ag-menu-toggle');
+            const nav = document.getElementById('ag-nav');
+            const header = document.querySelector('.ag-header');
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                nav.classList.toggle('active');
+                toggle.classList.toggle('active');
+            });
+            window.addEventListener('scroll', () => {
+                header.classList.toggle('scrolled', window.scrollY > 30);
+            }, { passive: true });
+            document.addEventListener('click', () => {
+                if(nav.classList.contains('active')) {
+                    nav.classList.remove('active');
+                    toggle.classList.remove('active');
+                }
+            });
+            nav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    nav.classList.remove('active');
+                    toggle.classList.remove('active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>

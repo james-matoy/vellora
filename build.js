@@ -13,14 +13,16 @@ const DIST_DIR = path.join(__dirname, 'dist');
 const DIST_FILE = path.join(DIST_DIR, 'index.html');
 
 const COMPONENTS = [
-  { id: 'hero-section',          file: '01 Hero.html'                  },
-  { id: 'five-capabilities',     file: '02 Five Core Capabilities.html' },
-  { id: 'nine-industries',       file: '04 Nine Industries.html'        },
-  { id: 'how-it-works',          file: '05 How It Works.html'           },
-  { id: 'responsible-ai',        file: '06 Responsible AI.html'         },
-  { id: 'faq',                   file: '07 FAQ.html'                    },
-  { id: 'testimonials',          file: '08 What People Say.html'        },
-  { id: 'talk-to-us',            file: '11 Talk to Us.html'             },
+  { id: 'hero-section',          file: '01-hero.html'                  },
+  { id: 'stats-bar',             file: '02-stats-bar.html'             },
+  { id: 'five-capabilities',     file: '03-pillars-of-service.html'    },
+  { id: 'nine-industries',       file: '04-real-estate-solutions.html' },
+  { id: 'how-it-works',          file: '05-how-it-works.html'          },
+  { id: 'featured-listings',     file: '06-featured-listings.html'     },
+  { id: 'testimonials',          file: '07-testimonials.html'          },
+  { id: 'lead-capture',          file: '08-lead-capture.html'          },
+  { id: 'faq',                   file: '09-faq.html'                   },
+  { id: 'responsible-ai',        file: '10-trust-and-security.html'    },
   { id: 'footer-section',        file: '../00-Global/footer.html'       },
 ];
 
@@ -101,18 +103,16 @@ fs.mkdirSync(DIST_DIR, { recursive: true });
 fs.writeFileSync(DIST_FILE, homeHtml, 'utf-8');
 
 // Copy image folders to dist/images/
-const DOCS_DIR = path.join(__dirname, 'docs');
-const IMAGES_DIR = path.join(DIST_DIR, 'images');
+const SRC_IMAGES_DIR = path.join(__dirname, 'images');
+const DIST_IMAGES_DIR = path.join(DIST_DIR, 'images');
 
 const IMAGE_FOLDERS = [
-  'Hero Background - 16x9',
-  'Real Estate Icons - 512x512',
-  'Testimonial Icons - 512x512',
+  'testimonial-icons-512x512',
 ];
 
 IMAGE_FOLDERS.forEach(folder => {
-  const src = path.join(DOCS_DIR, folder);
-  const dest = path.join(IMAGES_DIR, folder);
+  const src = path.join(SRC_IMAGES_DIR, folder);
+  const dest = path.join(DIST_IMAGES_DIR, folder);
   if (fs.existsSync(src)) {
     fs.cpSync(src, dest, { recursive: true });
     console.log(`  Copied: ${folder} → dist/images/${folder}`);
@@ -121,7 +121,7 @@ IMAGE_FOLDERS.forEach(folder => {
 
 // Rewrite image paths in the built HTML
 let builtHtml = fs.readFileSync(DIST_FILE, 'utf-8');
-builtHtml = builtHtml.replace(/\.\.\/\.\.\/docs\//g, 'images/');
+builtHtml = builtHtml.replace(/\.\.\/\.\.\/images\//g, 'images/');
 fs.writeFileSync(DIST_FILE, builtHtml, 'utf-8');
 
 console.log(`✅ Built: ${DIST_FILE}`);

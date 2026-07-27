@@ -130,7 +130,7 @@
         }
 
         .industry-card:not(.is-expanded) .icon-indicator {
-            background-color: #ffffff;
+            background-color: var(--bg-hover-lavender);
             border-radius: 50%;
         }
 
@@ -170,12 +170,19 @@
         }
 
         /* --- INDUSTRY LOGO SIZE --- */
-        .card-icon img {
+        .card-icon svg {
             height: 120px;
             width: auto;
             margin-bottom: 20px;
-            /* PERFORMANCE FIX: Ensure no transition on filter to prevent heavy repaints */
+            stroke: #A020F0;
+            stroke-width: 2;
+            fill: none;
             transition: none;
+        }
+
+        .industry-card.is-expanded .card-icon img,
+        .industry-card.is-expanded .card-icon svg {
+            filter: none;
         }
 
         .card-content-expand p {
@@ -198,6 +205,10 @@
             .industry-card:not(.is-expanded):hover .card-trigger {
                 color: #310F5C;
             }
+
+            .industry-card:not(.is-expanded):hover .icon-indicator {
+                background-color: #FFFFFF;
+            }
         }
 
         /* Active / Expanded State */
@@ -219,9 +230,7 @@
             padding-right: 47px;
         }
 
-        .industry-card.is-expanded .card-icon img {
-            filter: none;
-        }
+
 
         .industry-card.is-expanded .icon-default {
             opacity: 0;
@@ -327,9 +336,10 @@
                     <h3>Luxury Estates</h3>
                 </div>
                 <div class="card-content-expand">
-                    <div class="card-icon"><img
-                            src="../../docs/Real Estate Icons - 512x512/luxury-estates.png"
-                            alt="Luxury Estates"></div>
+                    <div class="card-icon"><svg viewBox="0 0 24 24">
+                            <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7z"></path>
+                            <path d="M5 20h14"></path>
+                        </svg></div>
                     <p>Bespoke marketing and discreet acquisition for high-net-worth properties.</p>
                 </div>
             </div>
@@ -349,9 +359,11 @@
                     <h3>First-Time Buyers</h3>
                 </div>
                 <div class="card-content-expand">
-                    <div class="card-icon"><img
-                            src="../../docs/Real Estate Icons - 512x512/first-time-buyers.png"
-                            alt="First-Time Buyers"></div>
+                    <div class="card-icon"><svg viewBox="0 0 24 24">
+                            <path d="m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L19 4"></path>
+                            <path d="m21 2-9.6 9.6"></path>
+                            <circle cx="7.5" cy="15.5" r="5.5"></circle>
+                        </svg></div>
                     <p>Patient, welcoming guidance to help you navigate your very first home purchase with confidence.</p>
                 </div>
             </div>
@@ -371,9 +383,10 @@
                     <h3>Real Estate Investors</h3>
                 </div>
                 <div class="card-content-expand">
-                    <div class="card-icon"><img
-                            src="../../docs/Real Estate Icons - 512x512/real-estate-investors.png"
-                            alt="Real Estate Investors"></div>
+                    <div class="card-icon"><svg viewBox="0 0 24 24">
+                            <path d="M23 6l-9.5 9.5-5-5L1 18"></path>
+                            <path d="M17 6h6v6"></path>
+                        </svg></div>
                     <p>Data-driven property curation to expand your portfolio and maximize ROI.</p>
                 </div>
             </div>
@@ -393,9 +406,11 @@
                     <h3>Urban Condominiums</h3>
                 </div>
                 <div class="card-content-expand">
-                    <div class="card-icon"><img
-                            src="../../docs/Real Estate Icons - 512x512/urban-condominiums.png"
-                            alt="Urban Condominiums"></div>
+                    <div class="card-icon"><svg viewBox="0 0 24 24">
+                            <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"></path>
+                            <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"></path>
+                            <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"></path>
+                        </svg></div>
                     <p>Connecting professionals with the perfect luxury high-rise and downtown living experiences.</p>
                 </div>
             </div>
@@ -415,9 +430,10 @@
                     <h3>Relocation Services</h3>
                 </div>
                 <div class="card-content-expand">
-                    <div class="card-icon"><img
-                            src="../../docs/Real Estate Icons - 512x512/relocation-services.png"
-                            alt="Relocation Services"></div>
+                    <div class="card-icon"><svg viewBox="0 0 24 24">
+                            <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg></div>
                     <p>Comprehensive neighborhood matching for executives and families moving to a new city.</p>
                 </div>
             </div>
@@ -437,9 +453,12 @@
                     <h3>New Developments</h3>
                 </div>
                 <div class="card-content-expand">
-                    <div class="card-icon"><img
-                            src="../../docs/Real Estate Icons - 512x512/new-developments.png"
-                            alt="New Developments"></div>
+                    <div class="card-icon"><svg viewBox="0 0 24 24">
+                            <path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5"></path>
+                            <path d="M14 6a6 6 0 0 1 6 6v3"></path>
+                            <path d="M4 15v-3a6 6 0 0 1 6-6"></path>
+                            <rect x="2" y="15" width="20" height="4" rx="1"></rect>
+                        </svg></div>
                     <p>Priority access to the most anticipated architectural projects and pre-construction investments.</p>
                 </div>
             </div>

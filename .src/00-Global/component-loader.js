@@ -4,13 +4,13 @@
  */
 
 const COMPONENTS = [
-  { id: 'hero-section',          path: '01 Hero.html'                  },
-  { id: 'five-capabilities',     path: '02 Five Core Capabilities.html' },
-  { id: 'nine-industries',       path: '04 Nine Industries.html'        },
-  { id: 'how-it-works',          path: '05 How It Works.html'           },
-  { id: 'responsible-ai',        path: '06 Responsible AI.html'         },
-  { id: 'faq',                   path: '07 FAQ.html'                    },
-  { id: 'testimonials',          path: '08 What People Say.html'        },
+  { id: 'hero-section',          path: '01-hero.html'                  },
+  { id: 'five-capabilities',     path: '03-pillars-of-service.html'    },
+  { id: 'nine-industries',       path: '04-real-estate-solutions.html' },
+  { id: 'how-it-works',          path: '05-how-it-works.html'          },
+  { id: 'responsible-ai',        path: '10-trust-and-security.html'    },
+  { id: 'faq',                   path: '09-faq.html'                   },
+  { id: 'testimonials',          path: '07-testimonials.html'          },
   { id: 'talk-to-us',            path: '11 Talk to Us.html'             },
   { id: 'footer-section',        path: '../00-Global/footer.html'       },
 ];
